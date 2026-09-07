@@ -17,6 +17,7 @@
     <nav class="nav">
       <a href="index.html" aria-current="page" data-i18n="nav_browse">Browse</a>
       <a href="dashboard.html" data-i18n="nav_dashboard">Artisan Dashboard</a>
+      <a id="authLink" href="login.html" data-i18n="nav_login">Login</a>
       <a class="cart-pill" href="cart.html">
         <span data-i18n="nav_cart">Cart</span>
         <span data-cart-count>0</span>
@@ -73,5 +74,23 @@
 <script src="assets/locales.js"></script>
 <script src="assets/catalog.js"></script>
 <script src="assets/lang-switcher.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const authLink = document.getElementById('authLink');
+    const buyerName = localStorage.getItem('buyerName');
+    if (buyerName) {
+      authLink.innerHTML = `Hi, ${buyerName} (Logout)`;
+      authLink.href = "#";
+      authLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        localStorage.removeItem('buyerId');
+        localStorage.removeItem('buyerName');
+        localStorage.removeItem('buyerPhone');
+        localStorage.removeItem('buyerCity');
+        window.location.reload();
+      });
+    }
+  });
+</script>
 </body>
 </html>

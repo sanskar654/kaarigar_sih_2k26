@@ -21,11 +21,11 @@
         '<div class="panel">' +
           '<h3>' + K.t("cart_delivery") + '</h3>' +
           '<div class="field"><label for="bname">' + K.t("cart_name") + '</label>' +
-            '<input id="bname" value="Priya Deshmukh" autocomplete="name"></div>' +
+            '<input id="bname" value="' + (localStorage.getItem('buyerName') || 'Priya Deshmukh') + '" autocomplete="name"></div>' +
           '<div class="field"><label for="bphone">' + K.t("cart_phone") + '</label>' +
-            '<input id="bphone" value="+91 98200 11223" autocomplete="tel"></div>' +
+            '<input id="bphone" value="' + (localStorage.getItem('buyerPhone') || '+91 98200 11223') + '" autocomplete="tel"></div>' +
           '<div class="field"><label for="bcity">' + K.t("cart_city") + '</label>' +
-            '<input id="bcity" value="Pune" autocomplete="address-level2"></div>' +
+            '<input id="bcity" value="' + (localStorage.getItem('buyerCity') || 'Pune') + '" autocomplete="address-level2"></div>' +
           '<div class="totals"><span>' + K.t("cart_subtotal") + '</span><span>' + K.rupee(K.cart.total()) + '</span></div>' +
           '<div class="totals"><span>' + K.t("cart_delivery_cost") + '</span><span>' + K.t("cart_delivery_free") + '</span></div>' +
           '<div class="totals grand"><span>' + K.t("cart_total") + '</span><span>' + K.rupee(K.cart.total()) + '</span></div>' +

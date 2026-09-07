@@ -331,20 +331,26 @@ function startListening() {
 
 // Page Load Initialization
 document.addEventListener('DOMContentLoaded', async () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  const artisanId = urlParams.get('artisanId') || 'ARTISAN_001';
-  const lang = urlParams.get('lang') || urlParams.get('language') || 'mr';
+  const artisanId = localStorage.getItem('artisanId');
+  const lang = localStorage.getItem('artisanLanguage') || 'hi';
+
+  if (!artisanId) {
+    window.location.href = 'login.html';
+    return;
+  }
 
   try {
     const query = new URLSearchParams({ artisanId, lang });
     const res = await fetch(`/api/seller/session?${query.toString()}`);
-    if (!res.ok) throw new Error('Failed to load session');
-    session = await res.json();
-
-    const customName = urlParams.get('name');
-    if (customName) {
-      session.artisan.name = customName;
+    if (!res.ok) {
+      if (res.status === 401 || res.status === 404) {
+        localStorage.removeItem('artisanId');
+        window.location.href = 'login.html';
+        return;
+      }
+      throw new Error('Failed to load session');
     }
+    session = await res.json();
 
     setupLanguageUI();
     initSpeechRecognition();

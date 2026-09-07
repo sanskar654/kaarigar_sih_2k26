@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kaarigar | Seller Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="seller.css">
+</head>
+<body>
+  <div class="landing-container">
+    <div class="landing-card" style="max-width: 400px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <h2 id="formTitle">Seller Login</h2>
+      
+      <div class="tabs" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+        <button id="tabLogin" class="btn" style="flex: 1;">Login</button>
+        <button id="tabRegister" class="btn btn-outline" style="flex: 1;">Register</button>
+      </div>
+
+      <!-- Error Message -->
+      <div id="errorMessage" style="display: none; background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"></div>
+
+      <form id="authForm">
+        <!-- Register Only Fields -->
+        <div id="registerFields" style="display: none;">
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" class="input-field" placeholder="Enter your name" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+          </div>
+          <div class="form-group" style="margin-bottom: 1rem;">
+            <label for="language">Preferred Language</label>
+            <select id="language" class="input-field" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+              <option value="hi">हिंदी (Hindi)</option>
+              <option value="mr">मराठी (Marathi)</option>
+              <option value="bn">বাংলা (Bengali)</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Common Fields -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" class="input-field" required placeholder="+91..." style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div class="form-group" style="margin-bottom: 1.5rem;">
+          <label for="password">Password</label>
+          <input type="password" id="password" class="input-field" required placeholder="Enter password" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+
+        <button type="submit" id="submitBtn" class="btn" style="width: 100%; padding: 0.75rem;">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="login.js"></script>
+</body>
+</html>

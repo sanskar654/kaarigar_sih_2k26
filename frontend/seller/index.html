@@ -68,36 +68,10 @@
     <!-- Center Card -->
     <div class="landing-card">
       <form id="startForm" class="landing-form">
-        <div class="form-group landing-form-group">
-          <label for="artisanName" class="landing-label">
-            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            Your Name (Artisan)
-          </label>
-          <input type="text" id="artisanName" class="landing-input" placeholder="Enter your name" autocomplete="off">
-          <div id="nameError" class="landing-error" style="display: none;">Please enter your name.</div>
-        </div>
-        
-        <div class="form-group landing-form-group">
-          <label for="languageSelect" class="landing-label">
-            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-            Select Language
-          </label>
-          <select id="languageSelect" class="landing-input landing-select">
-            <option value="" disabled selected>Choose your language</option>
-            <option value="en">English</option>
-            <option value="hi">हिंदी (Hindi)</option>
-            <option value="mr">मराठी (Marathi)</option>
-            <option value="bn">বাংলা (Bengali)</option>
-          </select>
-          <div id="langError" class="landing-error" style="display: none;">Please select a language.</div>
-        </div>
-        
-        <div class="action-row landing-action">
-          <button type="submit" class="landing-btn">Start Selling &nbsp;&rarr;</button>
-        </div>
-        
-        <div class="card-footer-quote">Your craft. Our support. A bigger tomorrow.</div>
-      </form>
+      <div style="display: flex; flex-direction: column; gap: 1rem; padding: 20px;">
+        <a href="login.html" class="landing-btn" style="text-decoration: none; text-align: center;">Login / Register</a>
+        <a href="/buyer/index.html" class="landing-btn" style="background: transparent; color: var(--dark); border: 2px solid var(--orange-accent); text-decoration: none; text-align: center;">Browse as Buyer</a>
+      </div>
     </div>
 
     <!-- Bottom Features -->
