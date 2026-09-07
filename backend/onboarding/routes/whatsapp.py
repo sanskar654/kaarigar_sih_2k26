@@ -44,8 +44,10 @@ MESSAGES = {
         "Is this correct? Reply YES to confirm."
     ),
     "success": (
-        "✅ आपका अकाउंट तैयार है! अब आप कारीगर पर बेच सकते हैं।\n\n"
-        "Your account is ready! You can now sell on Kaarigar. 🎉"
+        "✅ आपका अकाउंट तैयार है! अब आप कारीगर पर बेच सकते हैं।\n"
+        "आपका लॉगिन पिन (PIN) है: *{pin}*\n\n"
+        "Your account is ready! You can now sell on Kaarigar. 🎉\n"
+        "Your login PIN is: *{pin}*"
     ),
     "retry_photo": (
         "❌ फोटो से जानकारी पढ़ नहीं पाए। कृपया दोबारा साफ फोटो भेजें। "
@@ -196,6 +198,8 @@ def _handle_ocr_failure(wa_from: str, phone: str, retry_count: int):
 
 # ── Confirmation Handler ────────────────────────────────────────────
 
+import random
+
 async def _handle_confirmation(
     wa_from: str,
     phone: str,
@@ -204,17 +208,21 @@ async def _handle_confirmation(
 ):
     """Handle the YES/NO reply to the OCR readback.
 
-    YES → create artisan in the shared backend, verify, send success.
+    YES → create artisan in the shared backend with a generated PIN, verify, send success.
     Anything else → re-send the readback prompt.
     """
     if body.strip().upper() == "YES":
         data = session.get("extracted_data", {})
+        
+        # Generate a 4-digit PIN for web app login
+        pin = str(random.randint(1000, 9999))
 
         try:
             # ── Create artisan via shared backend ──
             artisan = await backend_api.create_artisan({
                 "name": data.get("name", "Unknown"),
                 "phone": phone,
+                "password": pin,
                 "village": data.get("village", ""),
                 "craft_type": data.get("craft", ""),
                 "story": "",
@@ -227,7 +235,7 @@ async def _handle_confirmation(
                 await backend_api.verify_artisan(artisan_id)
 
             # ── Success! ──
-            send_whatsapp(wa_from, MESSAGES["success"])
+            send_whatsapp(wa_from, MESSAGES["success"].format(pin=pin))
 
         except Exception as e:
             print(f"[ERROR] Backend call failed for {phone}: {e}")

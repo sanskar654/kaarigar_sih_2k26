@@ -13,17 +13,21 @@ document.addEventListener('DOMContentLoaded', () => {
     mode = newMode;
     errorMessage.style.display = 'none';
     if (mode === 'login') {
-      tabLogin.classList.remove('btn-outline');
-      tabRegister.classList.add('btn-outline');
+      tabLogin.style.background = 'var(--orange-accent)';
+      tabLogin.style.color = '#fff';
+      tabRegister.style.background = 'transparent';
+      tabRegister.style.color = 'var(--dark)';
       registerFields.style.display = 'none';
-      submitBtn.innerText = 'Login';
+      submitBtn.innerHTML = 'Login &nbsp;&rarr;';
       formTitle.innerText = 'Seller Login';
       document.getElementById('name').removeAttribute('required');
     } else {
-      tabRegister.classList.remove('btn-outline');
-      tabLogin.classList.add('btn-outline');
+      tabRegister.style.background = 'var(--orange-accent)';
+      tabRegister.style.color = '#fff';
+      tabLogin.style.background = 'transparent';
+      tabLogin.style.color = 'var(--dark)';
       registerFields.style.display = 'block';
-      submitBtn.innerText = 'Register';
+      submitBtn.innerHTML = 'Register &nbsp;&rarr;';
       formTitle.innerText = 'Seller Registration';
       document.getElementById('name').setAttribute('required', 'true');
     }
@@ -74,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
       errorMessage.style.display = 'block';
     } finally {
       submitBtn.disabled = false;
-      submitBtn.innerText = mode === 'login' ? 'Login' : 'Register';
+      submitBtn.innerHTML = mode === 'login' ? 'Login &nbsp;&rarr;' : 'Register &nbsp;&rarr;';
     }
   });
 });

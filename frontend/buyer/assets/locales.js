@@ -13,7 +13,7 @@
 
       /* ── Navigation ── */
       nav_browse: "Browse",
-      nav_dashboard: "Artisan Dashboard",
+      nav_login: "Login",
       nav_cart: "Cart",
 
       /* ── Hero (index) ── */
@@ -135,7 +135,7 @@
 
       /* ── Navigation ── */
       nav_browse: "उत्पाद देखें",
-      nav_dashboard: "कारीगर डैशबोर्ड",
+      nav_login: "लॉगिन",
       nav_cart: "कार्ट",
 
       /* ── Hero (index) ── */
@@ -257,7 +257,7 @@
 
       /* ── Navigation ── */
       nav_browse: "उत्पादे पहा",
-      nav_dashboard: "कारागीर डॅशबोर्ड",
+      nav_login: "लॉगिन",
       nav_cart: "कार्ट",
 
       /* ── Hero (index) ── */

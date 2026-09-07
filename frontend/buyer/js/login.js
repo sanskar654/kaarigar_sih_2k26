@@ -13,19 +13,15 @@ document.addEventListener('DOMContentLoaded', () => {
       mode = newMode;
       errorMessage.style.display = 'none';
       if (mode === 'login') {
-        tabLogin.style.background = 'var(--primary-color)';
-        tabLogin.style.color = '#fff';
-        tabRegister.style.background = 'transparent';
-        tabRegister.style.color = 'var(--primary-color)';
+        tabLogin.classList.remove('ghost');
+        tabRegister.classList.add('ghost');
         registerFields.style.display = 'none';
         submitBtn.innerText = 'Login';
         formTitle.innerText = 'Buyer Login';
         document.getElementById('name').removeAttribute('required');
       } else {
-        tabRegister.style.background = 'var(--primary-color)';
-        tabRegister.style.color = '#fff';
-        tabLogin.style.background = 'transparent';
-        tabLogin.style.color = 'var(--primary-color)';
+        tabRegister.classList.remove('ghost');
+        tabLogin.classList.add('ghost');
         registerFields.style.display = 'flex';
         submitBtn.innerText = 'Register';
         formTitle.innerText = 'Buyer Registration';

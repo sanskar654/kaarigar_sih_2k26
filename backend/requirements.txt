@@ -6,3 +6,8 @@ python-dotenv==1.0.1
 openai
 httpx
 python-multipart
+twilio
+pytesseract
+Pillow
+supabase
+razorpay

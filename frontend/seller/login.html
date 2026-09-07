@@ -5,30 +5,71 @@
   <title>Kaarigar | Seller Login</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="seller.css">
+  <link rel="stylesheet" href="index.css">
 </head>
-<body>
-  <div class="landing-container">
-    <div class="landing-card" style="max-width: 400px; margin: 2rem auto; padding: 2rem; background: #fff; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-      <h2 id="formTitle">Seller Login</h2>
+<body class="landing-body">
+  
+  <!-- Left Decoration -->
+  <div class="landing-deco-left">
+    <div class="landing-deco-text">
+      "Local<br>Artisans<br>Global<br>Opportunities"
+    </div>
+    <svg class="landing-deco-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+       <path d="M50 80 Q20 80 20 50 Q20 20 50 20 Q80 20 80 50 Q80 80 50 80" />
+       <path d="M30 30 L70 70 M30 70 L70 30" />
+       <circle cx="50" cy="50" r="15" />
+    </svg>
+  </div>
+
+  <!-- Right Decoration -->
+  <div class="landing-deco-right">
+    <div class="landing-deco-text">
+      Supporting<br>Artisans<br>Building<br>Brighter Tomorrows<br>—
+    </div>
+    <svg class="landing-deco-svg mandala" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+       <circle cx="50" cy="50" r="40" />
+       <circle cx="50" cy="50" r="25" />
+       <circle cx="50" cy="50" r="10" />
+       <path d="M50 10 L50 90 M10 50 L90 50 M22 22 L78 78 M22 78 L78 22" />
+    </svg>
+    <div class="landing-deco-text small-text" style="margin-top:20px;">
+      Crafting<br>Better<br>Futures<br>—
+    </div>
+  </div>
+
+  <div class="landing-container fade-in">
+    <!-- Top Brand -->
+    <div class="landing-brand-container" style="margin-bottom: 20px;">
+      <svg width="40" height="30" viewBox="0 0 100 80" class="brand-leaves" fill="var(--orange-accent)">
+         <path d="M50 10 Q60 40 50 70 Q40 40 50 10" />
+         <path d="M30 30 Q50 60 40 80 Q20 60 30 30" />
+         <path d="M70 30 Q50 60 60 80 Q80 60 70 30" />
+      </svg>
+      <h1 class="landing-brand-hindi">कारीगर</h1>
+    </div>
+
+    <!-- Center Card -->
+    <div class="landing-card" style="margin-top: 0;">
+      <h2 id="formTitle" style="text-align: center; color: var(--dark); margin-bottom: 20px; font-weight: 500;">Seller Login</h2>
       
-      <div class="tabs" style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
-        <button id="tabLogin" class="btn" style="flex: 1;">Login</button>
-        <button id="tabRegister" class="btn btn-outline" style="flex: 1;">Register</button>
+      <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem;">
+        <button id="tabLogin" class="landing-btn" style="flex: 1; margin: 0; padding: 10px;">Login</button>
+        <button id="tabRegister" class="landing-btn" style="flex: 1; margin: 0; padding: 10px; background: transparent; color: var(--dark); border: 2px solid var(--orange-accent);">Register</button>
       </div>
 
       <!-- Error Message -->
-      <div id="errorMessage" style="display: none; background: #fee2e2; color: #b91c1c; padding: 1rem; border-radius: 4px; margin-bottom: 1rem;"></div>
+      <div id="errorMessage" class="landing-error" style="display: none; margin-bottom: 15px; padding: 10px; background: #fee2e2; color: #b91c1c; border-radius: 4px;"></div>
 
-      <form id="authForm">
+      <form id="authForm" class="landing-form">
         <!-- Register Only Fields -->
         <div id="registerFields" style="display: none;">
-          <div class="form-group" style="margin-bottom: 1rem;">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" class="input-field" placeholder="Enter your name" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+          <div class="form-group landing-form-group">
+            <label for="name" class="landing-label">Full Name</label>
+            <input type="text" id="name" class="landing-input" placeholder="Enter your name">
           </div>
-          <div class="form-group" style="margin-bottom: 1rem;">
-            <label for="language">Preferred Language</label>
-            <select id="language" class="input-field" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+          <div class="form-group landing-form-group">
+            <label for="language" class="landing-label">Preferred Language</label>
+            <select id="language" class="landing-input landing-select">
               <option value="hi">हिंदी (Hindi)</option>
               <option value="mr">मराठी (Marathi)</option>
               <option value="bn">বাংলা (Bengali)</option>
@@ -38,16 +79,22 @@
         </div>
 
         <!-- Common Fields -->
-        <div class="form-group" style="margin-bottom: 1rem;">
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" class="input-field" required placeholder="+91..." style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        <div class="form-group landing-form-group">
+          <label for="phone" class="landing-label">Phone Number</label>
+          <input type="tel" id="phone" class="landing-input" required placeholder="+91...">
         </div>
-        <div class="form-group" style="margin-bottom: 1.5rem;">
-          <label for="password">Password</label>
-          <input type="password" id="password" class="input-field" required placeholder="Enter password" style="width: 100%; padding: 0.5rem; margin-top: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+        <div class="form-group landing-form-group">
+          <label for="password" class="landing-label">Password</label>
+          <input type="password" id="password" class="landing-input" required placeholder="Enter password">
         </div>
 
-        <button type="submit" id="submitBtn" class="btn" style="width: 100%; padding: 0.75rem;">Login</button>
+        <div class="action-row landing-action" style="margin-top: 20px;">
+          <button type="submit" id="submitBtn" class="landing-btn">Login &nbsp;&rarr;</button>
+        </div>
+        
+        <div class="action-row landing-action" style="margin-top: 15px;">
+          <a href="/buyer/index.html" class="landing-btn" style="background: transparent; color: var(--dark); border: 2px solid var(--orange-accent); text-decoration: none; text-align: center; display: block; width: 100%; box-sizing: border-box;">Browse as Buyer &nbsp;&rarr;</a>
+        </div>
       </form>
     </div>
   </div>
