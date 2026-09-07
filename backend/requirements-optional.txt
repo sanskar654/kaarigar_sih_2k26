@@ -1,0 +1,4 @@
+# Install ONLY when switching from the local SQLite demo to real services:
+#   pip install -r requirements-optional.txt
+razorpay==1.4.2
+supabase==2.7.4

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaarigar - Voice Artisan Product Listing</title>
+  <link rel="stylesheet" href="seller.css">
+</head>
+<body>
+
+  <!-- Main Kaarigar Top Header -->
+  <header class="main-header">
+    <div class="header-content">
+      <h1 class="brand-hindi">कारीगर</h1>
+      <div class="brand-subtitle">KAARIGAR</div>
+      <div class="brand-title" id="pageTitle">Artisan Product Listing</div>
+    </div>
+    <div class="orange-border"></div>
+  </header>
+
+  <main class="container">
+    
+    <!-- Step / Progress Section -->
+    <div class="progress-bar-container" id="progressContainer">
+      <div class="step-indicator" id="stepIndicator">Step 1 of 5</div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill" style="width: 20%;"></div>
+      </div>
+    </div>
+
+    <!-- Conversational Card Section -->
+    <section class="card-section" id="conversationSection">
+      <div class="section-header" id="questionHeader">Product Information</div>
+      <div class="section-body">
+
+        <!-- Voice Indicator Banner -->
+        <div class="voice-status-banner" id="voiceStatusBanner">
+          <div class="voice-icon-box">
+            <span class="voice-speaker-icon" id="speakerIcon">🔊</span>
+            <span class="voice-mic-icon pulse" id="micIcon" style="display: none;">🎙️</span>
+          </div>
+          <div class="voice-status-text" id="voiceStatusText">प्रश्न ऐका...</div>
+          <button type="button" class="btn-secondary btn-retry-voice" id="retryVoiceBtn" style="display: none;">पुन्हा बोला</button>
+        </div>
+
+        <!-- Recognized Spoken Text Display Box -->
+        <div class="recognized-answer-box" id="recognizedAnswerBox" style="display: none;">
+          <span class="recognized-label" id="recognizedPrefixLabel">तुमचे उत्तर: </span>
+          <strong class="recognized-text" id="recognizedTextDisplay">मातीचे दिवे</strong>
+        </div>
+
+        <!-- Active Question Box -->
+        <div class="question-container">
+          <label class="question-text" id="questionText">तुम्हाला कोणते उत्पादन विकायचे आहे?</label>
+
+          <!-- Input Fields based on step -->
+          <div class="input-group" id="inputContainer" style="display: none;">
+            <input type="text" id="userInput" class="rect-input" placeholder="e.g. मातीचे दिवे" autocomplete="off">
+          </div>
+
+          <!-- Timer Display -->
+          <div id="questionTimerBox" style="display: none; margin-top: 15px; color: #ff8c00; font-weight: bold; font-size: 14px;">
+            <span id="questionTimerText">Time remaining: 60s</span>
+          </div>
+
+          <!-- Price Engine Suggestion Display (Hidden by default) -->
+          <div class="price-box" id="priceSuggestionBox" style="display: none;">
+            <div class="price-title" id="priceTitle">Price Suggestion</div>
+            <div class="price-details">
+              <div><span id="rangeLabel">Typical range:</span> <strong id="priceRangeText">₹20 - ₹500</strong></div>
+              <div><span id="suggestedLabel">Suggested price:</span> <strong id="suggestedPriceText" class="highlight-price">₹100</strong></div>
+            </div>
+          </div>
+
+          <!-- Photo Upload Input (Hidden by default) -->
+          <div class="photo-upload-box" id="photoUploadBox" style="display: none;">
+            <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+            <button type="button" class="btn-secondary" id="choosePhotoBtn">Choose Photo</button>
+            <span class="file-name" id="fileNameDisplay">No photo selected</span>
+            <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
+              <img id="photoPreviewImg" src="" alt="Photo Preview">
+            </div>
+          </div>
+
+          <!-- Soft Warning Box (Hidden by default) -->
+          <div class="warning-box" id="warningBox" style="display: none;">
+            <span id="warningMessage">The selected price is outside the typical range. Do you want to continue?</span>
+          </div>
+
+          <!-- Status / Loading Message -->
+          <div class="loading-state" id="loadingState" style="display: none;">
+            <div class="spinner"></div>
+            <span id="loadingMessage">Understanding your product...</span>
+          </div>
+
+          <!-- Error Alert Box -->
+          <div class="error-box" id="errorBox" style="display: none;">
+            <span id="errorMessage">An error occurred. Please try again.</span>
+          </div>
+
+          <!-- Action Buttons & Manual Fallback Toggle -->
+          <div class="action-row">
+            <button type="button" class="btn-text-toggle" id="manualTextToggleBtn">या उत्तर टाइप करें</button>
+            <button type="button" class="btn-primary" id="continueBtn">आगे जा</button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Listing Preview Section (Hidden during questions) -->
+    <section class="card-section" id="previewSection" style="display: none;">
+      <h2 class="preview-main-title" id="previewMainTitle">Product Listing Preview</h2>
+      <p class="preview-subtitle" id="previewSubtitle">Review the information collected for your listing.</p>
+
+      <div class="section-header" id="productInfoHeader">Product Information</div>
+      <div class="section-body">
+
+        <!-- Original & AI Enhanced Photos Display -->
+        <div class="photos-comparison-container" style="display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 20px;">
+          <div class="display-field" style="flex: 1; min-width: 250px;">
+            <div class="field-label">Original Artisan Photo</div>
+            <div class="photo-display-container">
+              <img id="previewOriginalPhotoImg" src="" alt="Original Photo" class="preview-enhanced-photo">
+            </div>
+          </div>
+
+          <div class="display-field" style="flex: 1; min-width: 250px;">
+            <div class="field-label" id="previewEnhancedLabel">AI Enhanced Product Image</div>
+            <div class="photo-display-container" id="previewEnhancedContainer">
+              <img id="previewPhotoImg" src="" alt="AI Enhanced Product Image" class="preview-enhanced-photo" style="display: none;">
+              <div class="photo-badge" id="photoBadge" style="display: inline-block;">AI Enhanced Product Image</div>
+              <div id="enhancementUnavailableBox" style="display: none; padding: 20px; background-color: #ffeaea; color: #cc0000; border: 1px solid #cc0000; border-radius: 4px; text-align: center;">
+                AI image enhancement unavailable
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Product Name</div>
+          <div class="field-value" id="previewProductName">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Category</div>
+          <div class="field-value" id="previewCategory">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Subcategory</div>
+          <div class="field-value" id="previewSubcategory">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Quantity</div>
+          <div class="field-value" id="previewQuantity">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Description</div>
+          <div class="field-value" id="previewDescription">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Suggested Price</div>
+          <div class="field-value" id="previewSuggestedPrice">-</div>
+        </div>
+
+        <div class="display-field">
+          <div class="field-label">Final Price</div>
+          <div class="field-value price-value" id="previewPrice">-</div>
+        </div>
+      </div>
+
+      <div class="section-header" id="artisanInfoHeader">Artisan Information</div>
+      <div class="section-body">
+        <div class="artisan-row">
+          <div><strong id="artisanNameLabel">Artisan:</strong> <span id="previewArtisanName">Ramesh</span></div>
+          <div><strong id="artisanCraftLabel">Craft:</strong> <span id="previewArtisanCraft">Pottery</span></div>
+          <div><strong id="artisanLocationLabel">Location:</strong> <span id="previewArtisanLocation">Jaipur</span></div>
+          <div class="verified-badge-container" id="verifiedBadgeContainer">
+            <span class="verified-badge" id="previewVerifiedBadge">✓ Verified Artisan</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-actions">
+        <button type="button" class="btn-secondary" id="editListingBtn">Edit Listing</button>
+        <button type="button" class="btn-primary" id="publishListingBtn">Publish Listing</button>
+      </div>
+    </section>
+
+    <!-- Edit Modal/Overlay Section -->
+    <section class="card-section" id="editSection" style="display: none;">
+      <div class="section-header">Edit Listing</div>
+      <div class="section-body">
+        <form id="editForm">
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" id="editProductName" class="rect-input">
+          </div>
+          <div class="form-group">
+            <label>Category</label>
+            <select id="editCategory" class="rect-input"></select>
+          </div>
+          <div class="form-group">
+            <label>Subcategory</label>
+            <select id="editSubcategory" class="rect-input"></select>
+          </div>
+          <div class="form-group">
+            <label>Quantity</label>
+            <input type="number" id="editQuantity" class="rect-input" min="1">
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <textarea id="editDescription" class="rect-input rect-textarea" rows="3"></textarea>
+          </div>
+          <div class="form-group">
+            <label>Final Price (₹)</label>
+            <input type="number" id="editFinalPrice" class="rect-input" min="1">
+          </div>
+          <div class="edit-actions">
+            <button type="button" class="btn-secondary" id="cancelEditBtn">Cancel</button>
+            <button type="submit" class="btn-primary" id="saveEditBtn">Save Changes</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Success Screen Section (Shown after publish) -->
+    <section class="card-section success-section" id="successSection" style="display: none;">
+      <div class="success-icon">✓</div>
+      <h2 class="success-title" id="successTitle">Listing Published!</h2>
+      <p class="success-message" id="successMarketplaceMsg">Your product is now available on the Kaarigar marketplace.</p>
+      <div class="success-actions">
+        <a id="viewListingLink" href="#" class="btn-primary-link">View Listing</a>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="seller.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,1142 @@
+[
+  {
+    "id": "LISTING_1788676489431_969",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788676489413-641550527.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788676489419_original-1788676489413-641550527.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T06:34:49.431Z",
+    "updatedAt": "2026-09-06T06:34:49.445Z"
+  },
+  {
+    "id": "LISTING_1788682294362_587",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788682294354-96412691.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788682294355_original-1788682294354-96412691.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T08:11:34.362Z",
+    "updatedAt": "2026-09-06T08:11:34.371Z"
+  },
+  {
+    "id": "LISTING_1788682757158_699",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788682757137-514506130.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788682757150_original-1788682757137-514506130.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T08:19:17.159Z",
+    "updatedAt": "2026-09-06T08:19:17.169Z"
+  },
+  {
+    "id": "LISTING_1788682986123_436",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell 4.",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 4
+    },
+    "description": {
+      "original": "My product basically handmade diya.",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. My product basically handmade diya.",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. My product basically handmade diya."
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 100
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788682986102-749186463.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788682986105_original-1788682986102-749186463.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T08:23:06.123Z",
+    "updatedAt": "2026-09-06T08:23:13.777Z"
+  },
+  {
+    "id": "LISTING_1788683492900_304",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788683492887-432914789.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788683492890_original-1788683492887-432914789.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T08:31:32.900Z",
+    "updatedAt": "2026-09-06T08:31:32.911Z"
+  },
+  {
+    "id": "LISTING_1788683798210_911",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell wooden crafts.",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 4
+    },
+    "description": {
+      "original": "4 items.",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. 4 items.",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. 4 items."
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 4
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788683798193-439663807.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788683798199_original-1788683798193-439663807.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T08:36:38.210Z"
+  },
+  {
+    "id": "LISTING_1788684270618_251",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell handmade saree.",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 2
+    },
+    "description": {
+      "original": "A beautiful handmade saree is traditionally viewed by traditional technique. It has a simple, elegant design and unique pattern. It saree replica reflects the artisan creative.",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Weaving from Varanasi. A beautiful handmade saree is traditionally viewed by traditional technique. It has a simple, elegant design and unique pattern. It saree replica reflects the artisan creative.",
+      "generatedLocal": "Authentic handmade handwoven sarees carefully crafted by Weaving from Varanasi. A beautiful handmade saree is traditionally viewed by traditional technique. It has a simple, elegant design and unique pattern. It saree replica reflects the artisan creative."
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 2000
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788684270603-545264491.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788684270609_original-1788684270603-545264491.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T08:44:30.618Z",
+    "updatedAt": "2026-09-06T08:44:35.901Z"
+  },
+  {
+    "id": "LISTING_1788684354801_517",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell handmade sarees.",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 4
+    },
+    "description": {
+      "original": "Mein handmade saree has unique design and creativity need.",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Weaving from Varanasi. Mein handmade saree has unique design and creativity need.",
+      "generatedLocal": "Authentic handmade handwoven sarees carefully crafted by Weaving from Varanasi. Mein handmade saree has unique design and creativity need."
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 2000
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788684354789-273061342.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788684354791_original-1788684354789-273061342.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T08:45:54.801Z"
+  },
+  {
+    "id": "LISTING_1788690008700_507",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788690008692-530228068.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788690008694_original-1788690008692-530228068.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:20:08.700Z",
+    "updatedAt": "2026-09-06T10:20:08.707Z"
+  },
+  {
+    "id": "LISTING_1788690140375_851",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "Handmade Diyaj.",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 10
+    },
+    "description": {
+      "original": "The product is made up of sand and it has some creativity work on it.",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. The product is made up of sand and it has some creativity work on it.",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. The product is made up of sand and it has some creativity work on it."
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 50
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788690140357-731379240.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788690140365_original-1788690140357-731379240.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:22:20.376Z",
+    "updatedAt": "2026-09-06T10:22:26.218Z"
+  },
+  {
+    "id": "LISTING_1788690852288_16",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788690852273-910556533.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788690852277_original-1788690852273-910556533.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:34:12.288Z",
+    "updatedAt": "2026-09-06T10:34:12.299Z"
+  },
+  {
+    "id": "LISTING_1788691207182_362",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "dive",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "made up of sand with beautiful handmade work",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. made up of sand with beautiful handmade work",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur मधील कुशल कारागिराने बनवलेले. made up of sand with beautiful handmade work"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 50
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788691207158-941316499.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788691207168_original-1788691207158-941316499.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:40:07.182Z",
+    "updatedAt": "2026-09-06T10:40:10.266Z"
+  },
+  {
+    "id": "LISTING_1788691377834_25",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788691377815-161728018.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788691377820_original-1788691377815-161728018.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:42:57.834Z",
+    "updatedAt": "2026-09-06T10:42:57.850Z"
+  },
+  {
+    "id": "LISTING_1788691475985_470",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "i want to sell diya",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "Please tell us the little about your product.",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. Please tell us the little about your product.",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. Please tell us the little about your product."
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 50
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788691475967-150558357.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788691475974_original-1788691475967-150558357.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T10:44:35.985Z"
+  },
+  {
+    "id": "LISTING_1788692080218_479",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788692080200-110199602.png",
+      "enhanced": "/uploads/enhanced/enhanced_1788692080211_original-1788692080200-110199602.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T10:54:40.218Z",
+    "updatedAt": "2026-09-06T10:54:40.228Z"
+  },
+  {
+    "id": "LISTING_1788692346766_473",
+    "artisan": {
+      "id": "ARTISAN_002",
+      "name": "Sunita",
+      "craft": "Weaving",
+      "location": "Varanasi",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "i want to sell hanmade diya",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 6
+    },
+    "description": {
+      "original": "it is made up of organic sand with beautiful design",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. it is made up of organic sand with beautiful design",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Weaving from Varanasi. it is made up of organic sand with beautiful design"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 80
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788692346736-97193062.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788692346748_original-1788692346736-97193062.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T10:59:06.767Z"
+  },
+  {
+    "id": "LISTING_1788693028403_872",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "diya",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 2
+    },
+    "description": {
+      "original": "beautiful design",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. beautiful design",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। beautiful design"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 70
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788693027537-499708960.jpg",
+      "enhanced": ""
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T11:10:28.403Z"
+  },
+  {
+    "id": "LISTING_1788694087969_353",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "diya",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "beautiful design on it",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. beautiful design on it",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। beautiful design on it"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 50
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788694085484-121950234.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788694085494_original-1788694085484-121950234.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T11:28:07.970Z"
+  },
+  {
+    "id": "LISTING_1788695508242_541",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "दिया",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "beautiful design",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. beautiful design",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। beautiful design"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 60
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788695505502-784166040.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788695505516_original-1788695505502-784166040.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T11:51:48.242Z",
+    "updatedAt": "2026-09-06T11:54:43.780Z"
+  },
+  {
+    "id": "LISTING_1788696844572_290",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "Handmade Clay Diyas",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 12
+    },
+    "description": {
+      "original": "ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। ये हाथ से बनाए हुए मिट्टी के दीये हैं और जयपुर में बनाए हैं।"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788696842259-657797207.png",
+      "enhanced": ""
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T12:14:04.572Z",
+    "updatedAt": "2026-09-06T12:14:04.589Z"
+  },
+  {
+    "id": "LISTING_1788697070684_797",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "दिया",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "मेरा उत्पाद ऑर्गेनिक मिट्टी से बना हुआ है उसे पर नाजुक सी डिजाइन है और वह बहुत ही आकर्षक है",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. मेरा उत्पाद ऑर्गेनिक मिट्टी से बना हुआ है उसे पर नाजुक सी डिजाइन है और वह बहुत ही आकर्षक है",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। मेरा उत्पाद ऑर्गेनिक मिट्टी से बना हुआ है उसे पर नाजुक सी डिजाइन है और वह बहुत ही आकर्षक है"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 100
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788697066179-917485607.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788697066192_original-1788697066179-917485607.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T12:17:50.685Z"
+  },
+  {
+    "id": "LISTING_1788697545505_144",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "मैं दे दिया बेचना चाहती हूं",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "नदिया ऑर्गेनिक मिट्टी से बना हुआ है उसे पर सुंदर सी नाजुक डिजाइन है और वह बहुत ही आकर्षक है",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. नदिया ऑर्गेनिक मिट्टी से बना हुआ है उसे पर सुंदर सी नाजुक डिजाइन है और वह बहुत ही आकर्षक है",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। नदिया ऑर्गेनिक मिट्टी से बना हुआ है उसे पर सुंदर सी नाजुक डिजाइन है और वह बहुत ही आकर्षक है"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 100
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788697541311-282708262.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788697541326_original-1788697541311-282708262.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T12:25:45.505Z",
+    "updatedAt": "2026-09-06T12:25:59.728Z"
+  },
+  {
+    "id": "LISTING_1788697673724_598",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "handmade saree",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 5
+    },
+    "description": {
+      "original": "अपने उत्पाद के बारे में थोड़ा बताइए",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. अपने उत्पाद के बारे में थोड़ा बताइए",
+      "generatedLocal": "हस्तनिर्मित सुंदर handwoven sarees। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। अपने उत्पाद के बारे में थोड़ा बताइए"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788697668829-953513574.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788697668842_original-1788697668829-953513574.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T12:27:53.724Z"
+  },
+  {
+    "id": "LISTING_1788697810290_9",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "saree",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 3
+    },
+    "description": {
+      "original": "unique design",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. unique design",
+      "generatedLocal": "हस्तनिर्मित सुंदर handwoven sarees। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। unique design"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 5000
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788697805124-232241671.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788697805130_original-1788697805124-232241671.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T12:30:10.290Z",
+    "updatedAt": "2026-09-06T12:33:14.553Z"
+  },
+  {
+    "id": "LISTING_1788697963383_12",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "handcraft",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "beautiful design",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. beautiful design",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। beautiful design"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 200
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788697959984-150142088.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788697959990_original-1788697959984-150142088.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T12:32:43.383Z"
+  },
+  {
+    "id": "LISTING_1788698039610_591",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "diya",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 4
+    },
+    "description": {
+      "original": "beautiful",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. beautiful",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur मधील कुशल कारागिराने बनवलेले. beautiful"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 500
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788698035356-205133089.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788698035363_original-1788698035356-205133089.png"
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T12:33:59.610Z"
+  },
+  {
+    "id": "LISTING_1788712740783_209",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Srushti",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell the others",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 2
+    },
+    "description": {
+      "original": "my product is made up of",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. my product is made up of",
+      "generatedLocal": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. my product is made up of"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 100
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788712736344-865523912.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788712736356_original-1788712736344-865523912.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T16:39:00.783Z",
+    "updatedAt": "2026-09-06T16:39:29.597Z"
+  },
+  {
+    "id": "LISTING_1788712891300_573",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Srushti",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "mr",
+    "product": {
+      "name": "मला साडी विकायची आहे",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 4
+    },
+    "description": {
+      "original": "माझी साडी हाताने विणलेली आहे त्याच्यावर नाजूक",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. माझी साडी हाताने विणलेली आहे त्याच्यावर नाजूक",
+      "generatedLocal": "हस्तनिर्मित सुंदर handwoven sarees। Jaipur मधील कुशल कारागिराने बनवलेले. माझी साडी हाताने विणलेली आहे त्याच्यावर नाजूक"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788712889529-363926733.jpg",
+      "enhanced": ""
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T16:41:31.301Z"
+  },
+  {
+    "id": "LISTING_1788712955298_373",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Srushti",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "saree",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 4
+    },
+    "description": {
+      "original": "अपने उसे बात के बारे में",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. अपने उसे बात के बारे में",
+      "generatedLocal": "हस्तनिर्मित सुंदर handwoven sarees। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। अपने उसे बात के बारे में"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 150
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788712953507-148556341.jpg",
+      "enhanced": ""
+    },
+    "status": "draft",
+    "createdAt": "2026-09-06T16:42:35.298Z"
+  },
+  {
+    "id": "LISTING_1788713901794_757",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Ramesh",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "hi",
+    "product": {
+      "name": "मैं दिया बेचना चाहती हूं",
+      "category": "Pottery & Ceramics",
+      "subcategory": "Diyas",
+      "quantity": 5
+    },
+    "description": {
+      "original": "diya is made up of sand with beautiful design",
+      "generatedEnglish": "Authentic handmade diyas carefully crafted by Pottery from Jaipur. diya is made up of sand with beautiful design",
+      "generatedLocal": "हस्तनिर्मित सुंदर diyas। Jaipur के कुशल कारीगर द्वारा तैयार किया गया। diya is made up of sand with beautiful design"
+    },
+    "pricing": {
+      "min": 20,
+      "max": 500,
+      "average": 100,
+      "suggestedPrice": 100,
+      "finalPrice": 50
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788713897166-779375364.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788713897175_original-1788713897166-779375364.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T16:58:21.794Z",
+    "updatedAt": "2026-09-06T16:58:28.700Z"
+  },
+  {
+    "id": "LISTING_1788716259587_656",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Srushti",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "I want to sell a handmade red silk saree",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 10
+    },
+    "description": {
+      "original": "it is hand woolen with a beautiful traditional Golden floral design",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. it is hand woolen with a beautiful traditional Golden floral design",
+      "generatedLocal": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. it is hand woolen with a beautiful traditional Golden floral design"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 500
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788716255115-968466468.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788716255146_original-1788716255115-968466468.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T17:37:39.587Z",
+    "updatedAt": "2026-09-06T17:37:43.673Z"
+  },
+  {
+    "id": "LISTING_1788716407301_723",
+    "artisan": {
+      "id": "ARTISAN_001",
+      "name": "Srushti",
+      "craft": "Pottery",
+      "location": "Jaipur",
+      "verified": true
+    },
+    "language": "en",
+    "product": {
+      "name": "Cello handmade red silk saree",
+      "category": "Textiles & Weaving",
+      "subcategory": "Handwoven Sarees",
+      "quantity": 10
+    },
+    "description": {
+      "original": "hand woolen with a beautiful traditional Golden floral design",
+      "generatedEnglish": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. hand woolen with a beautiful traditional Golden floral design",
+      "generatedLocal": "Authentic handmade handwoven sarees carefully crafted by Pottery from Jaipur. hand woolen with a beautiful traditional Golden floral design"
+    },
+    "pricing": {
+      "min": 800,
+      "max": 15000,
+      "average": 5000,
+      "suggestedPrice": 5000,
+      "finalPrice": 4000
+    },
+    "photo": {
+      "original": "/uploads/original/original-1788716403207-613602018.jpg",
+      "enhanced": "/uploads/enhanced/enhanced_1788716403214_original-1788716403207-613602018.png"
+    },
+    "status": "published",
+    "createdAt": "2026-09-06T17:40:07.301Z",
+    "updatedAt": "2026-09-06T17:40:10.550Z"
+  }
+]

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — Kaarigar</title>
+<meta name="description" content="Handmade product by a verified Indian artisan on Kaarigar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="index.html">
+      <b>Kaarigar</b><span>कारीगर</span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" data-i18n="nav_browse">Browse</a>
+      <a href="dashboard.html" data-i18n="nav_dashboard">Artisan Dashboard</a>
+      <a class="cart-pill" href="cart.html">
+        <span data-i18n="nav_cart">Cart</span>
+        <span data-cart-count>0</span>
+      </a>
+    </nav>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-current" id="langToggle" aria-haspopup="listbox" aria-expanded="false">
+        <span class="lang-flag" id="langFlag">🇬🇧</span>
+        <span class="lang-label" id="langLabel">EN</span>
+        <svg class="lang-arrow" viewBox="0 0 20 20" fill="currentColor" width="14" height="14"><path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd"/></svg>
+      </button>
+      <ul class="lang-menu" id="langMenu" role="listbox" aria-label="Select language">
+        <li><button class="lang-opt active" data-lang-btn="en" role="option">🇬🇧 English</button></li>
+        <li><button class="lang-opt" data-lang-btn="hi" role="option">🇮🇳 हिन्दी</button></li>
+        <li><button class="lang-opt" data-lang-btn="mr" role="option">🇮🇳 मराठी</button></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="crumb"><a href="index.html" data-i18n="detail_back">← Back to all products</a></div>
+  <div id="root"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>Kaarigar · SIH26090 · Team Blackbox</span>
+    <span class="muted" data-i18n="footer_test_mode">Prototype — payments run in Razorpay Test Mode.</span>
+  </div>
+</footer>
+
+<script src="assets/api.js"></script>
+<script src="assets/locales.js"></script>
+<script src="assets/product.js"></script>
+<script src="assets/lang-switcher.js"></script>
+</body>
+</html>

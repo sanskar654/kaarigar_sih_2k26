@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Kaarigar</title>
+  <link rel="stylesheet" href="seller.css">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body class="landing-body">
+  
+  <!-- Left Decoration -->
+  <div class="landing-deco-left">
+    <div class="landing-deco-text">
+      "Local<br>Artisans<br>Global<br>Opportunities"
+    </div>
+    <svg class="landing-deco-svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="2">
+       <path d="M50 80 Q20 80 20 50 Q20 20 50 20 Q80 20 80 50 Q80 80 50 80" />
+       <path d="M30 30 L70 70 M30 70 L70 30" />
+       <circle cx="50" cy="50" r="15" />
+    </svg>
+  </div>
+
+  <!-- Right Decoration -->
+  <div class="landing-deco-right">
+    <div class="landing-deco-text">
+      Supporting<br>Artisans<br>Building<br>Brighter Tomorrows<br>—
+    </div>
+    <svg class="landing-deco-svg mandala" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.5">
+       <circle cx="50" cy="50" r="40" />
+       <circle cx="50" cy="50" r="25" />
+       <circle cx="50" cy="50" r="10" />
+       <path d="M50 10 L50 90 M10 50 L90 50 M22 22 L78 78 M22 78 L78 22" />
+    </svg>
+    <div class="landing-deco-text small-text" style="margin-top:20px;">
+      Crafting<br>Better<br>Futures<br>—
+    </div>
+  </div>
+
+  <div class="landing-container fade-in">
+    <!-- Top Brand -->
+    <div class="landing-brand-container">
+      <svg width="40" height="30" viewBox="0 0 100 80" class="brand-leaves" fill="var(--orange-accent)">
+         <path d="M50 10 Q60 40 50 70 Q40 40 50 10" />
+         <path d="M30 30 Q50 60 40 80 Q20 60 30 30" />
+         <path d="M70 30 Q50 60 60 80 Q80 60 70 30" />
+      </svg>
+      <h1 class="landing-brand-hindi">कारीगर</h1>
+      <div class="landing-brand-subtitle">Handmade. Human. Sustainable.</div>
+    </div>
+    
+    <!-- Hero -->
+    <div class="landing-hero">
+      <h2 class="landing-welcome">Welcome to <span class="text-orange">Kaarigar</span></h2>
+      <p class="landing-tagline">Bring your handmade creations to the world.</p>
+      
+      <div class="hero-decorative-line">
+         <span class="line-dash"></span>
+         <span class="hero-dot"></span>
+         <span class="hero-dot"></span>
+         <span class="hero-dot"></span>
+         <span class="line-dash"></span>
+      </div>
+      
+      <div class="hero-subtext">Share &nbsp;&bull;&nbsp; Sell &nbsp;&bull;&nbsp; Grow</div>
+    </div>
+
+    <!-- Center Card -->
+    <div class="landing-card">
+      <form id="startForm" class="landing-form">
+        <div class="form-group landing-form-group">
+          <label for="artisanName" class="landing-label">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            Your Name (Artisan)
+          </label>
+          <input type="text" id="artisanName" class="landing-input" placeholder="Enter your name" autocomplete="off">
+          <div id="nameError" class="landing-error" style="display: none;">Please enter your name.</div>
+        </div>
+        
+        <div class="form-group landing-form-group">
+          <label for="languageSelect" class="landing-label">
+            <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+            Select Language
+          </label>
+          <select id="languageSelect" class="landing-input landing-select">
+            <option value="" disabled selected>Choose your language</option>
+            <option value="en">English</option>
+            <option value="hi">हिंदी (Hindi)</option>
+            <option value="mr">मराठी (Marathi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+          </select>
+          <div id="langError" class="landing-error" style="display: none;">Please select a language.</div>
+        </div>
+        
+        <div class="action-row landing-action">
+          <button type="submit" class="landing-btn">Start Selling &nbsp;&rarr;</button>
+        </div>
+        
+        <div class="card-footer-quote">Your craft. Our support. A bigger tomorrow.</div>
+      </form>
+    </div>
+
+    <!-- Bottom Features -->
+    <div class="landing-features-row">
+      <div class="feature-item-col">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 1.5 8.3C19.2 16.9 15.2 20 11 20z"/></svg>
+        <span>Empower<br>Artisans</span>
+      </div>
+      <div class="feature-separator"></div>
+      <div class="feature-item-col">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+        <span>Preserve<br>Traditions</span>
+      </div>
+      <div class="feature-separator"></div>
+      <div class="feature-item-col">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Sustainable<br>Growth</span>
+      </div>
+      <div class="feature-separator"></div>
+      <div class="feature-item-col">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+        <span>Global<br>Opportunities</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Border -->
+  <div class="bottom-decorative-border"></div>
+
+  <script src="index.js"></script>
+</body>
+</html>

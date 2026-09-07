@@ -1,0 +1,173 @@
+KAARIGAR
+PROTOTYPE BUILD MASTER DOCUMENT
+SIH26090 · Team Blackbox · Prototype Round
+Team: Ethan · Shrushti/Shravani · Sanskar
+Everything you need to build, explained through one artisan's full journey — Ramesh.
+1. What We're Building, In One Paragraph
+Kaarigar is a platform that lets an artisan sell handmade products online without ever needing to type, own a smartphone, or understand e-commerce. They can call a phone number, message on WhatsApp, or use a simple web app — whichever they can access. AI handles everything technical: enhancing their photos, writing a proper listing, translating it, and suggesting a fair price. Buyers browse a normal-feeling online store, and every purchase pays the artisan directly and fairly.
+This document explains the entire system by following one artisan, Ramesh, a potter from Jaipur, through every step — registering, listing a product, and getting paid — including what goes wrong along the way and how the system handles it. Read this fully before building anything. Everyone on the team should understand the whole flow, not just their own piece, since the three tracks connect to each other constantly.
+2. How It Works — Ramesh's Full Journey
+2.1 Registering, by Phone Call (the main focus of this prototype)
+Ramesh has a basic phone. He doesn't have the app, and he's never used WhatsApp business tools before. He dials a phone number.
+The call connects. A voice menu greets him, offering each language in that language itself: "Hindi ke liye 1 dabayen" — then the same offer spoken in Bengali, then Tamil, and so on.
+Ramesh presses 1 for Hindi. He now hears the rest of the call in Hindi: "Registration ke liye 1, bechne ke liye 2, sahayata ke liye 3 dabayen."
+Ramesh presses 1. The system checks: does this phone number already have an account? It doesn't — Ramesh is new.
+The system asks: "Kya aapke paas Pahchan ID hai? Haan ke liye 1, nahi ke liye 2."
+Ramesh presses 1 (yes). The call ends there with a polite message, and immediately, a WhatsApp message arrives on his phone: "Please send a photo of your Pahchan artisan ID."
+Ramesh sends a photo of his ID card. The system reads it automatically (OCR) and extracts his name, village, and craft type directly from the card — he never has to say or type any of this himself.
+WhatsApp replies with what it found: "Hamein mila — Naam: Ramesh Kumar, Gaon: Jaipur, Shilp: Mitti ke bartan. Sahi hai? YES bhejein."
+Ramesh replies YES. His account is now marked verified. He gets a final message: "Aapka account taiyaar hai!"
+Ramesh's example: 
+If Ramesh had pressed 2 (no Pahchan ID) in step 5, the call would end with: "Bharat sarkaar ke niyamon ke anusaar, Pahchan ID ke bina khata nahi bana sakte," followed by a WhatsApp message with instructions on how to apply for one. No account is created — this is a hard, deliberate gate.
+Edge case — 
+Ramesh's phone loses signal right after pressing 1 for Hindi, before the main menu plays. The call simply drops, like any normal phone call would. There is nothing special to build for this — he just calls back and starts again from the beginning. Don't try to "resume" a dropped call; treat every new call as fresh.
+Edge case — 
+Ramesh doesn't press anything for several seconds (he's confused or distracted). The system should repeat the same prompt once. If there's still no response after the repeat, it should politely end the call rather than wait forever: "Hum aapka jawab nahi sun paye. Kripya dobara call karein."
+Edge case — 
+Ramesh's photo of his Pahchan ID is blurry and the system can't read it clearly. WhatsApp should ask him to resend it, up to 3 times. If it still can't be read after 3 tries, send a message asking him to call back and try again, rather than looping forever.
+Edge case — 
+The name OCR extracts ("Ramesh Kumar") doesn't match what he might have said out loud earlier in the call (in our design, he never says his name out loud at all — this is intentional, precisely to avoid this exact mismatch problem. Do not add a step asking him to say his name on the call.)
+Edge case — 
+Ramesh's internet on WhatsApp is very slow and the photo takes a long time to upload. The message should simply show as "sending" until it completes — this is standard WhatsApp behavior and needs no special handling from your side. Do not build a timeout that cancels the upload.
+Edge case — 
+Ramesh calls back a second time next week, still without a Pahchan ID. He is treated as a completely new caller — nothing is remembered about his earlier attempt. This is a deliberate simplicity decision, not a bug to fix.
+2.2 Selling a Product — by Phone Call
+A few weeks later, Ramesh is now verified. He wants to sell three diyas.
+He calls the same number, presses 1 for Hindi, then 2 to sell (the system recognizes his number as already verified, so it skips straight past registration).
+The system asks what he wants to sell and how many. He speaks freely: "Teen diye."
+The system asks him to describe them. He speaks: "Haath se bane, laal aur safed rang ke." This spoken audio is converted to text (speech-to-text) — this is the first point in the whole call where AI actually needs to understand open-ended language, not just a keypress.
+The system looks up similar listings and replies with a suggested price range: "Aisi diye aksar assi se ek sau bees rupaye mein bikte hain. Aap kya keemat rakhna chahenge?" Notice: Ramesh is never asked what his materials cost or how long it took him — that's deliberately never asked.
+Ramesh says: "Sau rupaye." The system reads it back: "Teen diye, sau rupaye pratyek. Sahi hai toh 1 dabayen."
+He presses 1. The call ends, and WhatsApp asks for a photo, since a phone call can't carry an image.
+Ramesh sends a photo. The system checks whether the photo actually matches what he described (a computer vision check comparing the image against the transcribed description).
+If it matches, the system runs the photo through image enhancement (cleaning up the background and lighting) and generates a bilingual listing. Ramesh gets a final message with his live listing and a shareable link.
+Edge case — 
+The photo Ramesh sends is of something that doesn't look like diyas at all (wrong photo sent by mistake). The match-check should catch this and ask him to resend, up to 3 times, then suggest he call back and redo the listing from scratch.
+Edge case — 
+Ramesh says "teen" (three) but only sends one photo showing what looks like one item. For the prototype, do not try to solve this precisely — flag it for basic manual review or just proceed with what was received. Building precise quantity-detection from a single photo is not worth the time in a 3-day build.
+Edge case — 
+Ramesh wants a different price than what the system suggested, even much higher. The system must always accept his own final number — the suggestion is only ever a suggestion, never enforced.
+2.3 Selling a Product — by App (for artisans who do have a smartphone)
+The same steps happen, but inside one continuous app session instead of a call handed off to WhatsApp: open app → tap "Sell" → take a photo in-app → type or record a voice note describing the product → see the suggested price on screen → preview the finished listing → edit anything if needed → tap Publish.
+Edge case — 
+Ramesh's app loses internet connection mid-upload of a photo. The app should show the photo as "pending upload" and automatically retry once connection returns, rather than losing the photo or forcing him to redo everything from scratch.
+Edge case — 
+Ramesh accidentally closes the app mid-listing. On reopening, if time allows, the app should offer to resume his draft rather than starting over — this is a nice-to-have, not required for the prototype demo.
+2.4 A Buyer Purchases Ramesh's Diyas
+A buyer in Pune finds Ramesh's diyas on the catalog, opens the product page (photos, authenticity badge, Ramesh's story), adds them to cart, and pays. Payment is held, not sent to Ramesh immediately. Once delivery is confirmed, the payment is released to Ramesh, and he gets a WhatsApp message confirming it.
+Edge case — 
+For the prototype, there is no real delivery happening. "Delivery confirmed" can simply be a button an admin/demo user clicks to simulate the courier confirming drop-off — do not build real courier tracking for this round.
+3. What We Are Actually Building In 3 Days
+The full system described above is the complete vision. Almost none of it needs to be real, working infrastructure for a prototype demo — it needs to convincingly demonstrate the idea end to end. Below is the honest, realistic scope.
+3.1 Must build — this is the actual demo path
+A real, working phone call: dial a real number, hear the language menu, register or sell, get handed off to WhatsApp — using Twilio's free trial (explained in Section 4).
+A real WhatsApp conversation: photo requests, OCR reading a Pahchan ID and a product photo, confirmations — using Twilio's free WhatsApp Sandbox.
+A working web app (this can BE "the app" for demo purposes — a responsive website is completely acceptable and normal for a hackathon prototype) covering: sell-a-product flow, price suggestion, listing preview and publish.
+A buyer-facing catalog and product page (we already have a working HTML design for this from earlier — reuse and connect it to real data instead of placeholder text).
+A simple cart/checkout using Razorpay's free Test Mode (fake card numbers, no real money moves).
+A basic artisan dashboard showing orders and earnings.
+3.2 Nice to have, only if time allows on day 3
+A simple demand-tip message sent to an artisan (can be a hardcoded example message, doesn't need real trend analysis).
+A second language fully working end to end (e.g. Tamil), to visually prove multilingual support beyond Hindi.
+Bulk-order matching shown as a simple mock screen, not real matching logic.
+3.3 Deliberately not building — and why that's the right call
+Real nightly model retraining / Champion-Challenger MLOps — explain it verbally in Q&A, it doesn't need to visibly run during a demo.
+Real GeM government integration — no public sandbox realistically available in 3 days; mock it as a static "synced" status.
+Real courier/logistics API integration — simulate delivery status with a manual admin toggle instead.
+Real bank penny-drop verification — simulate with a 2-second loading spinner followed by "✅ Verified", clearly acceptable at prototype stage.
+A trained authenticity-detection model — real handmade-vs-machine-made detection needs a trained dataset you don't have time to build. Use a simple rule-based placeholder (e.g., always show a score between 82–96%) and be upfront in Q&A that this is a placeholder for a model to be trained post-launch on real listing data.
+4. Free Tools To Actually Use
+Everything below replaces something more expensive or complex from our full design with a free option that's realistic to set up within 3 days.
+Purpose
+Free tool to use
+Note
+Phone calls (IVR)
+Twilio Free Trial
+Free number + free credit. Verify your own phone number in the Twilio console to call it during testing/demo.
+WhatsApp messaging
+Twilio WhatsApp Sandbox
+Free for development. Each tester joins the sandbox once by sending a join code.
+Reading ID cards & photos (OCR)
+Tesseract.js
+Free, open-source, runs in-browser or in Node — no API key needed.
+Understanding speech (ASR)
+Web Speech API (built into Chrome) for the app; Twilio's built-in transcription for calls
+Completely free, zero setup for the browser option.
+Translation
+Google Translate free tier / LibreTranslate
+Google's free tier covers far more volume than a demo needs.
+Generating listing text (LLM)
+Groq API or Google Gemini free tier
+Both offer free API keys with generous limits, sign up with just an email.
+Photo background removal
+rembg (free, open-source Python library)
+One line of code, good visual result for a demo.
+Authenticity scoring
+Simple placeholder logic
+Do not attempt a real trained model — not worth the time. Say so honestly if asked.
+Database + file storage + auth
+Supabase free tier
+Replaces PostgreSQL + S3 + login system with one free, hosted service — saves significant setup time.
+Backend hosting
+Render.com or Railway free tier
+Free tier is enough for demo-level traffic.
+Frontend hosting
+Vercel or Netlify free tier
+Deploy the web app / "mobile app" here.
+Payments
+Razorpay Test Mode
+Free, fake transactions only — never switch to live mode for a demo.
+Caching / sessions
+Skip entirely
+Not worth the setup time at this scale — use a simple in-memory variable or a Supabase table instead.
+5. Team Responsibilities
+Three tracks, matching the three natural parts of the system. Swap names freely if someone is more comfortable with a different piece — what matters is that each track has one clear owner.
+5.1 Track A — Onboarding, IVR & Verification (the main focus) — Ethan
+Deliverables
+Set up Twilio account, get a free trial number, verify a personal number to call it
+Build the IVR menu: language selection, main menu, registration branch, Pahchan ID yes/no branch
+Connect the call-ending handoff to trigger a WhatsApp Sandbox message
+Build the WhatsApp side: Pahchan ID photo request → Tesseract.js OCR → confirm-back message → mark verified in Supabase
+Handle the edge cases listed in Section 2.1: no response/timeout, blurry photo retry (up to 3), no-ID rejection message
+5.2 Track B — Selling & Listing Flow — Shrushti/Shravani
+Deliverables
+Build the "sell a product" flow in the web app: describe product, see price suggestion, set final price, preview listing, publish
+Build the IVR selling branch (press 2) with FastAPI logic reused from Track A's call infrastructure
+Implement the price suggestion logic (simple version: average of a few sample comparable prices + a fixed floor per category)
+Implement the photo-match check (can be a simplified version — e.g., basic image tag comparison, doesn't need to be perfect)
+Run rembg for photo enhancement on upload
+Handle edge cases from Section 2.2/2.3: photo retry logic, upload retry on connection drop
+5.3 Track C — Buyer Side, Dashboard & Backend Glue — Sanskar
+Deliverables
+Reuse and connect the existing product page design to real listing data from Supabase
+Build the catalog/browse page (can be simpler than the full earlier design — a clean grid is enough)
+Build cart + checkout using Razorpay Test Mode
+Build the artisan dashboard (orders list, earnings, verified badge)
+Set up the shared Supabase project (database + storage + auth) that Tracks A and B also read/write to
+Deploy the backend (Render/Railway) and frontend (Vercel/Netlify)
+6. GitHub Repository Structure
+One repo, everyone added as a collaborator, one folder per track to avoid stepping on each other's work:
+Folder
+Owner
+Contents
+/onboarding
+Ethan
+IVR call logic, WhatsApp verification, OCR integration
+/selling
+Shrushti/Shravani
+Sell-a-product flow, pricing logic, listing generation
+/buyer
+Sanskar
+Catalog, product page, checkout, dashboard
+/backend
+Shared
+FastAPI routes, Supabase connection, shared utilities
+/docs
+Shared
+This document, and every Antigravity prompt used, saved as you go
+Commit and push at the end of each work session, even if something isn't finished — partial progress saved is always better than losing a day's work. Merge to the main branch daily so everyone's pieces stay connected.
+7. How We'll Work From Here
+For each piece of the build, come back with exactly what you're building (referencing the section number above helps keep things consistent), and you'll get a ready-to-paste Antigravity prompt for it. The cycle is: get the prompt → paste into Antigravity → test what it builds → report back what's broken or missing → get a refined prompt → repeat, until that piece works.
+Save every prompt used into the /docs folder as you go — if Antigravity needs to regenerate something later, or a teammate needs to build something similar, having the working prompt already written saves time.
+Before you start building anything: 
+read Sections 1 and 2 fully, even if it's not your track. All three tracks call into each other constantly (the app checks verification status from Track A, Track C's dashboard shows data from Track B's listings), so understanding the whole flow will save real time later.

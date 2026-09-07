@@ -1,0 +1,19 @@
+{
+  "name": "kaarigar-marketplace",
+  "version": "1.0.0",
+  "description": "Kaarigar Marketplace Hackathon Prototype - Track B Selling Flow",
+  "main": "backend/server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "test": "node scratch/test_track_b.js"
+  },
+  "dependencies": {
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "image-size": "^2.0.2",
+    "multer": "^1.4.5-lts.1",
+    "openai": "^4.33.0"
+  }
+}
