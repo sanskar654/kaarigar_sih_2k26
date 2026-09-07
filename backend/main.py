@@ -19,10 +19,18 @@ from fastapi.staticfiles import StaticFiles  # noqa: E402
 import payments  # noqa: E402
 from models import CreateArtisan, CreateListing, CreateOrder, VerifyPayment  # noqa: E402
 from repository import backend_name, get_repo  # noqa: E402
+import seed as seed_module  # noqa: E402
 
 BUYER_DIR = Path(__file__).resolve().parent.parent / "buyer"
 
 app = FastAPI(title="Kaarigar API", version="1.0.0")
+
+
+@app.on_event("startup")
+def seed_if_empty():
+    repo = get_repo()
+    if len(repo.list_artisans()) == 0 and len(repo.list_listings()) == 0:
+        seed_module.run()
 
 # NOTE: wide-open CORS and no auth on the write endpoints — anyone who knows the
 # URL can create a listing or flip an order to delivered. Acceptable for a

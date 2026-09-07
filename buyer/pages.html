@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kaarigar - All Pages</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <style>
+    body { background: #fdfbf7; font-family: 'Outfit', system-ui, sans-serif; margin: 0; padding: 40px 20px; }
+    .wrap { max-width: 920px; margin: 0 auto; }
+    h1 { font-size: 36px; color: #8a3b12; margin-bottom: 8px; }
+    .subtitle { color: #6b5a48; margin-bottom: 40px; }
+    .group { background: #fff; border-radius: 20px; padding: 24px 28px; margin-bottom: 20px;
+             box-shadow: 0 4px 24px rgba(138, 59, 18, 0.08); border: 1px solid #f3e4d4; }
+    .group-title { font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+                   color: #b0652a; margin-bottom: 16px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .page-link { display: flex; flex-direction: column; padding: 14px 16px; border-radius: 14px;
+                 border: 1.5px solid #f0dcc2; text-decoration: none; color: #3d2a18;
+                 background: #fff8ee; transition: all 0.2s; }
+    .page-link:hover { transform: translateY(-2px); border-color: #c97a32; background: #fff1dc;
+                       box-shadow: 0 8px 20px rgba(138, 59, 18, 0.12); }
+    .page-label { font-weight: 700; font-size: 15px; margin-bottom: 4px; }
+    .page-path { font-family: 'Consolas', monospace; font-size: 12px; color: #8c7a64; }
+    .back-bar { margin-bottom: 20px; }
+    .back-bar a { color: #b0652a; text-decoration: none; font-weight: 600; font-size: 14px; }
+    .back-bar a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="back-bar">
+      <a href="/">&larr; Back to Buyer Catalog (Home)</a>
+    </div>
+    <h1>🏺 Kaarigar — All Pages</h1>
+    <p class="subtitle">Quick links to every page in the prototype. Click any card to open.</p>
+
+    <div class="group">
+      <div class="group-title">🟢 Buyer App — Track C (Main Showcase)</div>
+      <div class="grid">
+        <a class="page-link" href="/">
+          <span class="page-label">🛍️ Buyer Catalog (Home)</span>
+          <span class="page-path">/ → index.html</span>
+        </a>
+        <a class="page-link" href="/product.html">
+          <span class="page-label">📦 Product Detail</span>
+          <span class="page-path">/product.html</span>
+        </a>
+        <a class="page-link" href="/cart.html">
+          <span class="page-label">🛒 Cart &amp; Checkout</span>
+          <span class="page-path">/cart.html</span>
+        </a>
+        <a class="page-link" href="/dashboard.html">
+          <span class="page-label">📊 Artisan Dashboard</span>
+          <span class="page-path">/dashboard.html</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">🟠 Artisan Onboarding — Track A / B</div>
+      <div class="grid">
+        <a class="page-link" href="/landing.html">
+          <span class="page-label">👋 Welcome Landing</span>
+          <span class="page-path">/landing.html</span>
+        </a>
+        <a class="page-link" href="/seller.html">
+          <span class="page-label">🎤 Voice Listing Wizard</span>
+          <span class="page-path">/seller.html</span>
+        </a>
+        <a class="page-link" href="/view-listing.html">
+          <span class="page-label">👁️ Listing Preview</span>
+          <span class="page-path">/view-listing.html</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">🔵 Alternate Marketplace — Track B</div>
+      <div class="grid">
+        <a class="page-link" href="/marketplace.html">
+          <span class="page-label">🛍️ Marketplace Grid</span>
+          <span class="page-path">/marketplace.html</span>
+        </a>
+        <a class="page-link" href="/seller-product.html">
+          <span class="page-label">📦 Product Page (Alt)</span>
+          <span class="page-path">/seller-product.html</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">⚙️ Dev &amp; API</div>
+      <div class="grid">
+        <a class="page-link" href="/docs" target="_blank">
+          <span class="page-label">🧾 API Docs (Swagger)</span>
+          <span class="page-path">/docs</span>
+        </a>
+        <a class="page-link" href="/api/health" target="_blank">
+          <span class="page-label">❤️ Health Check</span>
+          <span class="page-path">/api/health</span>
+        </a>
+        <a class="page-link" href="/api/listings" target="_blank">
+          <span class="page-label">📋 Listings JSON</span>
+          <span class="page-path">/api/listings</span>
+        </a>
+        <a class="page-link" href="/api/artisans" target="_blank">
+          <span class="page-label">🧑‍🎨 Artisans JSON</span>
+          <span class="page-path">/api/artisans</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
