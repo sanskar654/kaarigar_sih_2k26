@@ -105,6 +105,8 @@ def _prompt(lang: str, key: str) -> str:
 async def incoming_call(
     retry: int = Query(0),
     From: str = Form(""),
+    To: str = Form(""),
+    Direction: str = Form("inbound"),
 ):
     """First webhook hit when a call comes in. Plays the language menu.
 
@@ -146,6 +148,8 @@ async def language_selected(
     retry: int = Query(0),
     lang: str = Query(""),
     From: str = Form(""),
+    To: str = Form(""),
+    Direction: str = Form("inbound"),
 ):
     """Receives the language digit, plays the main menu.
 
@@ -192,6 +196,8 @@ async def main_menu(
     Digits: str = Form(""),
     lang: str = Query("hi"),
     From: str = Form(""),
+    To: str = Form(""),
+    Direction: str = Form("inbound"),
 ):
     """Routes the user based on their main-menu selection:
         1 → Registration
@@ -229,12 +235,15 @@ async def registration(
     lang: str = Query("hi"),
     retry: int = Query(0),
     From: str = Form(""),
+    To: str = Form(""),
+    Direction: str = Form("inbound"),
 ):
     """Checks if the caller's phone is already registered. If new, asks
     whether they have a Pahchan ID."""
     from onboarding.services.backend_api import find_artisan_by_phone
 
-    phone = normalize_phone(From)
+    user_phone = To if "outbound" in Direction else From
+    phone = normalize_phone(user_phone)
     response = VoiceResponse()
 
     # ── Already registered? ──
@@ -277,6 +286,8 @@ async def pahchan_check(
     Digits: str = Form(""),
     lang: str = Query("hi"),
     From: str = Form(""),
+    To: str = Form(""),
+    Direction: str = Form("inbound"),
 ):
     """Handles the Pahchan ID yes/no response.
 
@@ -288,7 +299,8 @@ async def pahchan_check(
     Digit 2 (No):
         - Play the rejection message (government regulation) and hang up
     """
-    phone = normalize_phone(From)
+    user_phone = To if "outbound" in Direction else From
+    phone = normalize_phone(user_phone)
     response = VoiceResponse()
 
     if Digits == "1":
