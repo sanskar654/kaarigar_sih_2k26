@@ -21,7 +21,8 @@ class SupabaseRepository:
     def create_artisan(self, d):
         row = {
             "id": d.get("id") or uid("art"), "name": d["name"],
-            "phone": d.get("phone", ""), "village": d.get("village", ""),
+            "phone": d.get("phone", ""), "password": d.get("password", ""), 
+            "village": d.get("village", ""),
             "craft_type": d.get("craft_type", ""), "story": d.get("story", ""),
             "verified": bool(d.get("verified")),
         }
@@ -102,6 +103,26 @@ class SupabaseRepository:
             "status": "released", "delivered_at": now_iso(),
         }).eq("id", oid).eq("status", "paid_held").execute()
         return self.get_order(oid)
+
+
+    # ---- buyers ----
+    def create_buyer(self, d):
+        from dbutil import now_iso
+        row = {
+            "id": uid("buy"), "name": d["name"], "phone": d["phone"],
+            "city": d.get("city", ""), "password": d["password"],
+            "created_at": now_iso()
+        }
+        self.sb.table("buyers").insert(row).execute()
+        return self.get_buyer(row["id"])
+
+    def get_buyer(self, bid):
+        r = self.sb.table("buyers").select("*").eq("id", bid).limit(1).execute()
+        return r.data[0] if r.data else None
+
+    def get_buyer_by_phone(self, phone):
+        r = self.sb.table("buyers").select("*").eq("phone", phone).limit(1).execute()
+        return r.data[0] if r.data else None
 
 
 def _norm(row):

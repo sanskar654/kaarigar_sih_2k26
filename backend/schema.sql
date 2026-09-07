@@ -7,6 +7,7 @@ create table if not exists artisans (
     id           text primary key,
     name         text not null,
     phone        text unique,
+    password     text,
     village      text,
     craft_type   text,
     story        text,
@@ -43,6 +44,15 @@ create table if not exists orders (
     status             text not null default 'created',
     created_at         timestamptz not null default now(),
     delivered_at       timestamptz
+);
+
+create table if not exists buyers (
+    id           text primary key,
+    name         text not null,
+    phone        text unique not null,
+    city         text,
+    password     text not null,
+    created_at   timestamptz not null default now()
 );
 
 create index if not exists idx_listings_artisan on listings(artisan_id);
