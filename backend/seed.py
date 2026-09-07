@@ -13,20 +13,20 @@ from repository import backend_name, get_repo  # noqa: E402
 
 ARTISANS = [
     {
-        "id": "art_ramesh", "name": "Ramesh Kumar", "phone": "+919000000001",
+        "id": "art_ramesh", "name": "Ramesh Kumar", "phone": "+919000000001", "password": "password123",
         "village": "Jaipur, Rajasthan", "craft_type": "Pottery", "verified": True,
         "story": ("Ramesh has shaped clay in Jaipur for over 20 years, learning the "
                   "craft from his father. Every diya is thrown by hand on a traditional "
                   "wheel, sun-dried, then fired in a wood kiln."),
     },
     {
-        "id": "art_meena", "name": "Meena Devi", "phone": "+919000000002",
+        "id": "art_meena", "name": "Meena Devi", "phone": "+919000000002", "password": "password123",
         "village": "Bhuj, Kutch", "craft_type": "Textiles", "verified": True,
         "story": ("Meena is a third-generation Ajrakh block-printer. She carves her own "
                   "wooden blocks and dyes every piece with natural indigo and madder."),
     },
     {
-        "id": "art_arjun", "name": "Arjun Singh", "phone": "+919000000003",
+        "id": "art_arjun", "name": "Arjun Singh", "phone": "+919000000003", "password": "password123",
         "village": "Moradabad, Uttar Pradesh", "craft_type": "Metalwork", "verified": True,
         "story": ("Arjun hand-beats and engraves brass and copper in Moradabad, the city "
                   "of brass, using tools passed down through four generations."),

@@ -25,10 +25,21 @@ class VerifyPayment(BaseModel):
 class CreateArtisan(BaseModel):
     name: str
     phone: Optional[str] = ""
+    password: Optional[str] = ""
     village: Optional[str] = ""
     craft_type: Optional[str] = ""
     story: Optional[str] = ""
     verified: bool = False
+
+class CreateBuyer(BaseModel):
+    name: str
+    phone: str
+    city: Optional[str] = ""
+    password: str
+
+class LoginRequest(BaseModel):
+    phone: str
+    password: str
 
 
 class CreateListing(BaseModel):

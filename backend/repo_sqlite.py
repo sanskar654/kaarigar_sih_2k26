@@ -12,7 +12,7 @@ from dbutil import now_iso, uid
 
 SCHEMA = """
 create table if not exists artisans (
-    id text primary key, name text not null, phone text, village text,
+    id text primary key, name text not null, phone text unique, password text, village text,
     craft_type text, story text, verified integer not null default 0,
     created_at text
 );
@@ -28,6 +28,10 @@ create table if not exists orders (
     items text not null default '[]', amount real not null default 0,
     razorpay_order_id text, razorpay_payment_id text,
     status text not null default 'created', created_at text, delivered_at text
+);
+create table if not exists buyers (
+    id text primary key, name text not null, phone text unique not null,
+    city text, password text not null, created_at text
 );
 """
 
@@ -56,9 +60,9 @@ class SQLiteRepository:
         with self._conn() as c:
             c.execute(
                 "insert or replace into artisans"
-                "(id,name,phone,village,craft_type,story,verified,created_at)"
-                " values(?,?,?,?,?,?,?,?)",
-                (aid, d["name"], d.get("phone", ""), d.get("village", ""),
+                "(id,name,phone,password,village,craft_type,story,verified,created_at)"
+                " values(?,?,?,?,?,?,?,?,?)",
+                (aid, d["name"], d.get("phone", ""), d.get("password", ""), d.get("village", ""),
                  d.get("craft_type", ""), d.get("story", ""),
                  1 if d.get("verified") else 0, now_iso()),
             )
@@ -67,6 +71,11 @@ class SQLiteRepository:
     def get_artisan(self, aid):
         with self._conn() as c:
             r = c.execute("select * from artisans where id=?", (aid,)).fetchone()
+        return _artisan(r) if r else None
+
+    def get_artisan_by_phone(self, phone):
+        with self._conn() as c:
+            r = c.execute("select * from artisans where phone=?", (phone,)).fetchone()
         return _artisan(r) if r else None
 
     def list_artisans(self):
@@ -151,6 +160,27 @@ class SQLiteRepository:
                 (now_iso(), oid),
             )
         return self.get_order(oid)
+
+    # ---- buyers ----
+    def create_buyer(self, d):
+        bid = uid("buy")
+        with self._conn() as c:
+            c.execute(
+                "insert into buyers(id,name,phone,city,password,created_at) "
+                "values(?,?,?,?,?,?)",
+                (bid, d["name"], d["phone"], d.get("city", ""), d["password"], now_iso())
+            )
+        return self.get_buyer(bid)
+
+    def get_buyer(self, bid):
+        with self._conn() as c:
+            r = c.execute("select * from buyers where id=?", (bid,)).fetchone()
+        return dict(r) if r else None
+
+    def get_buyer_by_phone(self, phone):
+        with self._conn() as c:
+            r = c.execute("select * from buyers where phone=?", (phone,)).fetchone()
+        return dict(r) if r else None
 
 
 def _artisan(r):
