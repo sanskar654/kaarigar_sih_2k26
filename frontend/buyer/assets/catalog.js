@@ -22,11 +22,20 @@
     }).join("");
   }
 
+  function getImageUrl(l) {
+    var img = l.image_url || "";
+    if (img.startsWith("/uploads/") && K.api && K.api.base) {
+      return K.api.base + img;
+    }
+    return img || "https://picsum.photos/seed/kaarigar-diya/800/800";
+  }
+
   function cardHtml(l) {
     var href = "product.html?id=" + encodeURIComponent(l.id);
+    var imgSrc = getImageUrl(l);
     return '<article class="card">' +
       '<a href="' + href + '"><div class="thumb-wrapper"><img class="thumb" alt="' + K.esc(l.title) + '" loading="lazy" src="' +
-        K.esc(l.image_url || "") + '"></div></a>' +
+        K.esc(imgSrc) + '" onerror="this.onerror=null; this.src=\'https://picsum.photos/seed/kaarigar-diya/800/800\';"></div></a>' +
       '<div class="body">' +
         '<h3><a href="' + href + '">' + K.esc(l.title) + '</a></h3>' +
         '<div class="by">' + K.esc(l.artisan_name || "Artisan") +

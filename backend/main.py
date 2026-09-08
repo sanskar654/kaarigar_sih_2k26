@@ -68,6 +68,41 @@ def health():
 def categories():
     return {"categories": CATEGORIES}
 
+CATEGORY_FALLBACK_IMAGES = {
+    "pottery": "https://picsum.photos/seed/kaarigar-diya/800/800",
+    "diya": "https://picsum.photos/seed/kaarigar-diya/800/800",
+    "ceramics": "https://picsum.photos/seed/kaarigar-vase/800/800",
+    "vase": "https://picsum.photos/seed/kaarigar-vase/800/800",
+    "textiles": "https://picsum.photos/seed/kaarigar-dupatta/800/800",
+    "dupatta": "https://picsum.photos/seed/kaarigar-dupatta/800/800",
+    "saree": "https://picsum.photos/seed/kaarigar-dupatta/800/800",
+    "runner": "https://picsum.photos/seed/kaarigar-runner/800/800",
+    "weaving": "https://picsum.photos/seed/kaarigar-runner/800/800",
+    "metalwork": "https://picsum.photos/seed/kaarigar-copper/800/800",
+    "metal": "https://picsum.photos/seed/kaarigar-brass/800/800",
+    "brass": "https://picsum.photos/seed/kaarigar-brass/800/800",
+    "copper": "https://picsum.photos/seed/kaarigar-copper/800/800",
+    "woodwork": "https://picsum.photos/seed/kaarigar-wood/800/800",
+    "wood": "https://picsum.photos/seed/kaarigar-wood/800/800",
+    "handicraft": "https://picsum.photos/seed/kaarigar-diya/800/800",
+}
+
+def resolve_listing_image(img_url: str, category: str = "", title: str = "") -> str:
+    if img_url:
+        if img_url.startswith("data:") or img_url.startswith("http://") or img_url.startswith("https://"):
+            return img_url
+        if img_url.startswith("/uploads/"):
+            local_path = Path(__file__).resolve().parent / img_url.lstrip("/")
+            if local_path.is_file():
+                return img_url
+    
+    # Fallback to authentic craft seed image
+    text = (str(category) + " " + str(title)).lower()
+    for kw, seed_url in CATEGORY_FALLBACK_IMAGES.items():
+        if kw in text:
+            return seed_url
+    return "https://picsum.photos/seed/kaarigar-diya/800/800"
+
 # ── Catalog (buyer side) ─────────────────────────────────────────
 @app.get("/api/listings")
 def listings(category: str = "All", q: str = ""):
@@ -80,6 +115,8 @@ def listings(category: str = "All", q: str = ""):
             or needle in (r.get("description") or "").lower()
             or needle in (r.get("artisan_name") or "").lower()
         ]
+    for r in rows:
+        r["image_url"] = resolve_listing_image(r.get("image_url", ""), r.get("category", ""), r.get("title", ""))
     return {"listings": rows, "count": len(rows)}
 
 @app.get("/api/listings/{listing_id}")
@@ -87,6 +124,7 @@ def listing_detail(listing_id: str):
     row = get_repo().get_listing(listing_id)
     if not row:
         raise HTTPException(404, "Listing not found")
+    row["image_url"] = resolve_listing_image(row.get("image_url", ""), row.get("category", ""), row.get("title", ""))
     return row
 
 # ── Shared writes (Tracks A and B call these) ────────────────────

@@ -273,10 +273,14 @@
     <!-- Success Screen Section (Shown after publish) -->
     <section class="card-section success-section" id="successSection" style="display: none;">
       <div class="success-icon">✓</div>
-      <h2 class="success-title" id="successTitle">Listing Published!</h2>
-      <p class="success-message" id="successMarketplaceMsg">Your product is now available on the Kaarigar marketplace.</p>
+      <h2 class="success-title" id="successTitle">Listing Published! 🎉</h2>
+      <p class="success-message" id="successMarketplaceMsg">Your craft is now live on the Kaarigar marketplace for buyers to discover.</p>
+      <p id="redirectCountdown" style="font-size: 0.95rem; color: var(--text-muted); margin-bottom: 20px;">
+        Redirecting to marketplace in <span id="countdownSecs" style="font-weight: 700; color: var(--orange-accent);">3</span>s...
+      </p>
       <div class="success-actions">
-        <a id="viewListingLink" href="#" class="btn-primary-link">View Listing</a>
+        <a id="viewListingLink" href="../buyer/index.html" class="btn-primary-link">🛍️ View in Marketplace</a>
+        <a href="seller.html" class="btn-secondary-link">➕ List Another Product</a>
       </div>
     </section>
 

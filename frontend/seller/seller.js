@@ -944,9 +944,23 @@ publishListingBtn.addEventListener('click', async () => {
 
     previewSection.style.display = 'none';
     successSection.style.display = 'block';
+
+    const targetMarketplace = '../buyer/index.html';
     if (viewListingLink) {
-      viewListingLink.href = `/buyer/marketplace.html`;
+      viewListingLink.href = targetMarketplace;
     }
+
+    // Auto-redirect to buyer marketplace after 3 seconds
+    let count = 3;
+    const countEl = document.getElementById('countdownSecs');
+    const timer = setInterval(() => {
+      count--;
+      if (countEl) countEl.innerText = count;
+      if (count <= 0) {
+        clearInterval(timer);
+        window.location.href = targetMarketplace;
+      }
+    }, 1000);
   } catch (err) {
     alert('Publish failed: ' + err.message);
     publishListingBtn.disabled = false;

@@ -9,10 +9,16 @@
 
   function render() {
     var l = listing;
+    var imgSrc = l.image_url || "";
+    if (imgSrc.startsWith("/uploads/") && K.api && K.api.base) {
+      imgSrc = K.api.base + imgSrc;
+    }
+    imgSrc = imgSrc || "https://picsum.photos/seed/kaarigar-diya/800/800";
+
     root.innerHTML =
       '<div class="detail animate-success">' +
         '<div class="gallery">' +
-          '<img alt="' + K.esc(l.title) + '" src="' + K.esc(l.image_url || "") + '">' +
+          '<img alt="' + K.esc(l.title) + '" src="' + K.esc(imgSrc) + '" onerror="this.onerror=null; this.src=\'https://picsum.photos/seed/kaarigar-diya/800/800\';">' +
         '</div>' +
         '<div>' +
           '<div class="meta-row" style="margin:0">' +

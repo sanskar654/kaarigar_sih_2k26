@@ -603,7 +603,53 @@ body {
 .success-message {
   font-size: 1.1rem;
   color: var(--text-muted);
-  margin-bottom: 25px;
+  margin-bottom: 15px;
+}
+
+.success-actions {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.btn-primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--orange-accent);
+  color: var(--white);
+  padding: 12px 26px;
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn-primary-link:hover {
+  background-color: #C0581B;
+  transform: translateY(-1px);
+}
+
+.btn-secondary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #E5E7EB;
+  color: var(--text-primary);
+  padding: 12px 22px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btn-secondary-link:hover {
+  background-color: #D1D5DB;
 }
 
 /* Responsive adjustments */
