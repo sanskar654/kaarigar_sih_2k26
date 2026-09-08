@@ -19,7 +19,7 @@ from pydantic import BaseModel
 
 import payments
 from models import CreateArtisan, CreateListing, CreateOrder, VerifyPayment, CreateBuyer, LoginRequest
-from repository import backend_name, get_repo
+from repository import backend_name, get_repo, _use_supabase
 import seed as seed_module
 
 from services.price_engine import get_suggested_price, parse_spoken_number
@@ -348,7 +348,9 @@ async def upload_image(
 @app.post("/api/listing")
 def create_listing_alias(body: Dict[str, Any]):
     # Map the nested JSON from seller flow to the flat CreateListing model
-    artisan_id = body.get("artisan", {}).get("id", "art_ramesh")
+    repo = get_repo()
+    artisan_id = body.get("artisan", {}).get("id") or "art_ramesh"
+    artisan = repo.get_artisan(artisan_id) or {}
     product = body.get("product", {})
     description = body.get("description", {})
     pricing = body.get("pricing", {})
@@ -366,7 +368,73 @@ def create_listing_alias(body: Dict[str, Any]):
         image_url=photo.get("enhanced") or photo.get("original") or "",
         authenticity_score=random.randint(85, 98)
     )
-    return create_listing(mapped)
+    raw = create_listing(mapped)
+    saved_listing = raw.get("listing", {})
+    
+    rich_listing = {
+        **saved_listing,
+        "artisan": {
+            "id": artisan.get("id", artisan_id),
+            "name": artisan.get("name") or body.get("artisan", {}).get("name", "Artisan"),
+            "craft": artisan.get("craft_type") or body.get("artisan", {}).get("craft", "Handicraft"),
+            "location": artisan.get("village") or body.get("artisan", {}).get("location", "India"),
+            "verified": bool(artisan.get("verified", True)),
+        },
+        "product": {
+            "name": product.get("name") or saved_listing.get("title", "Untitled"),
+            "category": product.get("category") or saved_listing.get("category", "Handicraft"),
+            "subcategory": product.get("subcategory", ""),
+            "quantity": product.get("quantity", saved_listing.get("quantity", 1)),
+        },
+        "description": {
+            "original": description.get("original", ""),
+            "generatedEnglish": description.get("generatedEnglish") or saved_listing.get("description", ""),
+            "generatedLocal": description.get("generatedLocal") or saved_listing.get("description_local", ""),
+        },
+        "pricing": {
+            "min": pricing.get("min", 0),
+            "max": pricing.get("max", 0),
+            "average": pricing.get("average", 0),
+            "suggestedPrice": pricing.get("suggestedPrice", saved_listing.get("price", 0)),
+            "finalPrice": pricing.get("finalPrice", saved_listing.get("price", 0)),
+        },
+        "photo": {
+            "original": photo.get("original") or saved_listing.get("image_url", ""),
+            "enhanced": photo.get("enhanced") or saved_listing.get("image_url", "") or None,
+        },
+        "status": "draft"
+    }
+    return {"success": True, "listing": rich_listing}
+
+@app.put("/api/listing/{listing_id}")
+def update_listing_endpoint(listing_id: str, body: Dict[str, Any]):
+    repo = get_repo()
+    existing = repo.get_listing(listing_id)
+    if not existing:
+        raise HTTPException(404, "Listing not found")
+    
+    updates = {}
+    if "product" in body:
+        updates["title"] = body["product"].get("name", existing.get("title"))
+        updates["category"] = body["product"].get("category", existing.get("category"))
+        updates["quantity"] = body["product"].get("quantity", existing.get("quantity"))
+    if "description" in body:
+        updates["description_local"] = body["description"].get("generatedLocal", existing.get("description_local"))
+    if "pricing" in body:
+        updates["price"] = body["pricing"].get("finalPrice", existing.get("price"))
+    if "status" in body:
+        updates["status"] = body["status"]
+    
+    if updates:
+        if _use_supabase():
+            repo.sb.table("listings").update(updates).eq("id", listing_id).execute()
+        else:
+            set_clauses = ", ".join([f"{k} = ?" for k in updates.keys()])
+            with repo._conn() as c:
+                c.execute(f"update listings set {set_clauses} where id = ?", (*updates.values(), listing_id))
+                
+    updated = repo.get_listing(listing_id)
+    return {"success": True, "listing": updated}
 
 # Static file serving
 if BUYER_DIR.is_dir():

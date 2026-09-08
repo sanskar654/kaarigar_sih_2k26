@@ -351,6 +351,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       throw new Error('Failed to load session');
     }
     session = await res.json();
+    if (session && session.artisan) {
+      if (previewArtisanName) previewArtisanName.innerText = session.artisan.name || '';
+      if (previewArtisanCraft) previewArtisanCraft.innerText = session.artisan.craft_type || session.artisan.craft || 'Artisan';
+      if (previewArtisanLocation) previewArtisanLocation.innerText = session.artisan.village || session.artisan.location || 'India';
+      if (previewVerifiedBadge) previewVerifiedBadge.style.display = session.artisan.verified ? 'inline-block' : 'none';
+    }
 
     setupLanguageUI();
     initSpeechRecognition();
@@ -721,12 +727,15 @@ function showPreview() {
   const photoBadge = document.getElementById('photoBadge');
   const enhancementUnavailableBox = document.getElementById('enhancementUnavailableBox');
 
-  if (originalPhotoImg) {
-    originalPhotoImg.src = currentListing.photo.original;
+  const origPhoto = currentListing?.photo?.original || currentListing?.image_url || formData.photoOriginalUrl || '';
+  const enhPhoto = currentListing?.photo?.enhanced || currentListing?.image_url || formData.photoEnhancedUrl || null;
+
+  if (originalPhotoImg && origPhoto) {
+    originalPhotoImg.src = origPhoto;
   }
   
-  if (currentListing.photo.enhanced) {
-    const enhancedUrl = new URL(currentListing.photo.enhanced, window.location.origin).href;
+  if (enhPhoto) {
+    const enhancedUrl = enhPhoto.startsWith('http') ? enhPhoto : new URL(enhPhoto, window.location.origin).href;
     previewPhotoImg.src = enhancedUrl;
     previewPhotoImg.style.display = 'block';
     if (photoBadge) photoBadge.style.display = 'inline-block';
@@ -737,22 +746,33 @@ function showPreview() {
     if (enhancementUnavailableBox) enhancementUnavailableBox.style.display = 'block';
   }
 
-  previewProductName.innerText = currentListing.product.name;
-  previewCategory.innerText = currentListing.product.category;
-  previewSubcategory.innerText = currentListing.product.subcategory;
-  previewQuantity.innerText = currentListing.product.quantity;
-  previewDescription.innerText = currentListing.description.generatedLocal || currentListing.description.generatedEnglish || currentListing.description.original;
-  previewSuggestedPrice.innerText = `₹${currentListing.pricing.suggestedPrice}`;
-  previewPrice.innerText = `₹${currentListing.pricing.finalPrice}`;
+  const prodName = currentListing?.product?.name || currentListing?.title || formData.productAnswer || '';
+  const prodCat = currentListing?.product?.category || currentListing?.category || formData.category || '';
+  const prodSubcat = currentListing?.product?.subcategory || formData.subcategory || '';
+  const prodQty = currentListing?.product?.quantity || currentListing?.quantity || formData.quantity || 1;
+  const prodDesc = currentListing?.description?.generatedLocal || currentListing?.description?.generatedEnglish || currentListing?.description?.original || currentListing?.description_local || currentListing?.description || formData.generatedLocalDescription || formData.descriptionAnswer || '';
+  const sugPrice = currentListing?.pricing?.suggestedPrice || formData.pricing.suggestedPrice || currentListing?.price || 0;
+  const finPrice = currentListing?.pricing?.finalPrice || formData.pricing.finalPrice || currentListing?.price || 0;
 
-  previewArtisanName.innerText = currentListing.artisan.name;
-  previewArtisanCraft.innerText = currentListing.artisan.craft;
-  previewArtisanLocation.innerText = currentListing.artisan.location;
+  if (previewProductName) previewProductName.innerText = prodName;
+  if (previewCategory) previewCategory.innerText = prodCat;
+  if (previewSubcategory) previewSubcategory.innerText = prodSubcat;
+  if (previewQuantity) previewQuantity.innerText = prodQty;
+  if (previewDescription) previewDescription.innerText = prodDesc;
+  if (previewSuggestedPrice) previewSuggestedPrice.innerText = `₹${sugPrice}`;
+  if (previewPrice) previewPrice.innerText = `₹${finPrice}`;
 
-  if (currentListing.artisan.verified) {
-    previewVerifiedBadge.style.display = 'inline-block';
-  } else {
-    previewVerifiedBadge.style.display = 'none';
+  const artName = currentListing?.artisan?.name || currentListing?.artisan_name || session?.artisan?.name || 'Artisan';
+  const artCraft = currentListing?.artisan?.craft || currentListing?.artisan_craft || session?.artisan?.craft_type || session?.artisan?.craft || 'Handicraft';
+  const artLoc = currentListing?.artisan?.location || currentListing?.artisan_village || session?.artisan?.village || session?.artisan?.location || 'India';
+  const isVer = currentListing?.artisan?.verified ?? currentListing?.artisan_verified ?? session?.artisan?.verified ?? true;
+
+  if (previewArtisanName) previewArtisanName.innerText = artName;
+  if (previewArtisanCraft) previewArtisanCraft.innerText = artCraft;
+  if (previewArtisanLocation) previewArtisanLocation.innerText = artLoc;
+
+  if (previewVerifiedBadge) {
+    previewVerifiedBadge.style.display = isVer ? 'inline-block' : 'none';
   }
 }
 
@@ -761,13 +781,15 @@ editListingBtn.addEventListener('click', async () => {
   previewSection.style.display = 'none';
   editSection.style.display = 'block';
 
-  editProductName.value = currentListing.product.name;
-  editQuantity.value = currentListing.product.quantity;
-  editDescription.value = currentListing.description.generatedLocal || currentListing.description.generatedEnglish || currentListing.description.original;
-  editFinalPrice.value = currentListing.pricing.finalPrice;
+  editProductName.value = currentListing?.product?.name || currentListing?.title || formData.productAnswer || '';
+  editQuantity.value = currentListing?.product?.quantity || currentListing?.quantity || formData.quantity || 1;
+  editDescription.value = currentListing?.description?.generatedLocal || currentListing?.description?.generatedEnglish || currentListing?.description?.original || currentListing?.description || formData.generatedLocalDescription || '';
+  editFinalPrice.value = currentListing?.pricing?.finalPrice || formData.pricing.finalPrice || currentListing?.price || 0;
 
-  editCategory.innerHTML = `<option value="${currentListing.product.category}">${currentListing.product.category}</option>`;
-  editSubcategory.innerHTML = `<option value="${currentListing.product.subcategory}">${currentListing.product.subcategory}</option>`;
+  const catVal = currentListing?.product?.category || currentListing?.category || formData.category || 'Handicraft';
+  const subcatVal = currentListing?.product?.subcategory || formData.subcategory || '';
+  editCategory.innerHTML = `<option value="${catVal}">${catVal}</option>`;
+  editSubcategory.innerHTML = `<option value="${subcatVal}">${subcatVal}</option>`;
 });
 
 cancelEditBtn.addEventListener('click', () => {
