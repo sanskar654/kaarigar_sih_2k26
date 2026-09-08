@@ -33,6 +33,10 @@ class SupabaseRepository:
         r = self.sb.table("artisans").select("*").eq("id", aid).limit(1).execute()
         return r.data[0] if r.data else None
 
+    def get_artisan_by_phone(self, phone):
+        r = self.sb.table("artisans").select("*").eq("phone", phone).limit(1).execute()
+        return r.data[0] if r.data else None
+
     def list_artisans(self):
         return self.sb.table("artisans").select("*").order("name").execute().data
 

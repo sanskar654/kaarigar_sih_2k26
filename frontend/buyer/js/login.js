@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ phone, password })
           });
-          const data = await res.json();
+          const data = await res.json().catch(() => ({ detail: `Server error (${res.status})` }));
           if (!res.ok) throw new Error(data.detail || 'Login failed');
           
           localStorage.setItem('buyerId', data.buyer.id);
@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name, phone, city, password })
           });
-          const data = await res.json();
+          const data = await res.json().catch(() => ({ detail: `Server error (${res.status})` }));
           if (!res.ok) throw new Error(data.detail || 'Registration failed');
           
           localStorage.setItem('buyerId', data.buyer.id);
