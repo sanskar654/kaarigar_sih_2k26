@@ -9,7 +9,7 @@ account_sid = os.getenv("TWILIO_ACCOUNT_SID")
 auth_token = os.getenv("TWILIO_AUTH_TOKEN")
 
 # Remove "whatsapp:" if it's there
-from_phone = os.getenv("TWILIO_PHONE_NUMBER", "").replace("whatsapp:", "")
+from_phone = "+17372508034"
 to_phone = "+917499019651"
 
 # The webhook URL that Twilio will fetch when you pick up the phone
@@ -22,8 +22,7 @@ print(f"Initiating call to {to_phone} from {from_phone}...")
 call = client.calls.create(
     to=to_phone,
     from_=from_phone,
-    url=url,
-    method="POST"
+    twiml='<Response><Say>Hello from Twilio</Say></Response>'
 )
 
 print(f"Call initiated successfully! SID: {call.sid}")
