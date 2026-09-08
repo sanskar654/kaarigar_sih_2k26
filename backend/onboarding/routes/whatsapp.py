@@ -20,6 +20,7 @@ from onboarding.services.session import (
     clear_session,
     get_session,
     normalize_phone,
+    set_session,
     update_session,
 )
 from onboarding.services.twilio_client import download_media, send_whatsapp
@@ -107,9 +108,43 @@ async def incoming_message(
     phone = normalize_phone(From)
     session = get_session(phone)
 
-    # ── No active session — user hasn't gone through the call flow ──
+    # ── Handle sessions and onboarding ──
     if not session:
-        return _twiml_response(MESSAGES["no_session"])
+        # If user directly uploads an ID photo, start session and process it right away!
+        if NumMedia > 0 and MediaUrl0:
+            set_session(phone, {
+                "state": "awaiting_photo",
+                "language": "hi",
+                "retry_count": 0,
+                "extracted_data": None,
+            })
+            session = get_session(phone)
+            reply = await _handle_photo(From, phone, session, NumMedia, MediaUrl0)
+            return _twiml_response(reply)
+
+        # Check if already registered in the system
+        try:
+            existing = await backend_api.find_artisan_by_phone(phone)
+            if existing:
+                return _twiml_response(
+                    f"🙏 नमस्ते {existing.get('name', '')}! आप कारीगर पर पहले से रजिस्टर्ड हैं।\n\n"
+                    f"🏘️ गाँव: {existing.get('village', '—')}\n"
+                    f"🎨 शिल्प: {existing.get('craft_type', '—')}\n\n"
+                    f"कारीगर सेलर पोर्टल पर लॉगिन करें:\n"
+                    f"https://kaarigar-sih-2k26.onrender.com/seller/login.html\n\n"
+                    f"(नया पहचान पत्र भेजकर आप अपनी जानकारी अपडेट कर सकते हैं।)"
+                )
+        except Exception as e:
+            print(f"[WARN] Error looking up artisan: {e}")
+
+        # If user sent text ("Hi", "नमस्ते", etc.), welcome them and ask for ID photo
+        set_session(phone, {
+            "state": "awaiting_photo",
+            "language": "hi",
+            "retry_count": 0,
+            "extracted_data": None,
+        })
+        return _twiml_response(MESSAGES["photo_request"])
 
     state = session.get("state")
 
@@ -210,7 +245,8 @@ async def _handle_confirmation(
     YES → create artisan in the shared backend with a generated PIN, verify, send success.
     Anything else → re-send the readback prompt.
     """
-    if body.strip().upper() == "YES":
+    clean_body = body.strip().upper()
+    if clean_body in ["YES", "Y", "HAAN", "HA", "1", "हाँ", "हां", "OK"]:
         data = session.get("extracted_data", {})
         
         # Generate a 4-digit PIN for web app login

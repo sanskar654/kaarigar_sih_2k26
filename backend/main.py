@@ -94,12 +94,11 @@ def listing_detail(listing_id: str):
 def create_artisan(body: CreateArtisan):
     repo = get_repo()
     existing = repo.get_artisan_by_phone(body.phone)
-    if existing:
-        raise HTTPException(400, "Phone number already registered")
-    
-    # Auto-verify for web demo purposes
     data = body.model_dump()
     data["verified"] = True
+    if existing:
+        data["id"] = existing["id"]
+        return repo.create_artisan(data)
     return repo.create_artisan(data)
 
 @app.post("/api/artisans/login")
