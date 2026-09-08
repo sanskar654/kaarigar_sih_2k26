@@ -72,9 +72,14 @@ MESSAGES = {
 }
 
 
-def _empty_twiml() -> Response:
-    """Return an empty TwiML response (Twilio expects valid XML back)."""
-    return Response(content="<Response/>", media_type="application/xml")
+from twilio.twiml.messaging_response import MessagingResponse
+
+def _twiml_response(body_text: str = None) -> Response:
+    """Return a TwiML XML response. If body_text is provided, Twilio delivers it directly."""
+    resp = MessagingResponse()
+    if body_text:
+        resp.message(body_text)
+    return Response(content=str(resp), media_type="text/xml")
 
 
 # ── Main Webhook ─────────────────────────────────────────────────────
@@ -104,18 +109,19 @@ async def incoming_message(
 
     # ── No active session — user hasn't gone through the call flow ──
     if not session:
-        send_whatsapp(From, MESSAGES["no_session"])
-        return _empty_twiml()
+        return _twiml_response(MESSAGES["no_session"])
 
     state = session.get("state")
 
     if state == "awaiting_photo":
-        await _handle_photo(From, phone, session, NumMedia, MediaUrl0)
+        reply = await _handle_photo(From, phone, session, NumMedia, MediaUrl0)
+        return _twiml_response(reply)
 
     elif state == "awaiting_confirmation":
-        await _handle_confirmation(From, phone, session, Body)
+        reply = await _handle_confirmation(From, phone, session, Body)
+        return _twiml_response(reply)
 
-    return _empty_twiml()
+    return _twiml_response()
 
 
 # ── Photo Upload Handler ────────────────────────────────────────────
@@ -126,13 +132,12 @@ async def _handle_photo(
     session: dict,
     num_media: int,
     media_url: str,
-):
+) -> str:
     """Download the photo, run OCR, send readback or ask for retry."""
 
     # User sent text instead of a photo
     if num_media == 0 or not media_url:
-        send_whatsapp(wa_from, MESSAGES["send_photo_not_text"])
-        return
+        return MESSAGES["send_photo_not_text"]
 
     retry_count = session.get("retry_count", 0)
 
@@ -159,41 +164,35 @@ async def _handle_photo(
                 },
             )
 
-            # Send readback for user to confirm
-            readback = MESSAGES["readback"].format(
+            # Return readback for user to confirm
+            return MESSAGES["readback"].format(
                 name=name, village=village, craft=craft,
             )
-            send_whatsapp(wa_from, readback)
 
         else:
             # OCR ran but found no labelled fields
             print(f"[INFO] OCR found no fields for {phone}. "
                   f"Raw text: {result['raw_text'][:200]}")
-            _handle_ocr_failure(wa_from, phone, retry_count)
+            return _handle_ocr_failure(wa_from, phone, retry_count)
 
     except Exception as e:
         print(f"[ERROR] OCR processing failed for {phone}: {e}")
-        _handle_ocr_failure(wa_from, phone, retry_count)
+        return _handle_ocr_failure(wa_from, phone, retry_count)
 
 
 # ── OCR Failure & Retry Logic ────────────────────────────────────────
 
-def _handle_ocr_failure(wa_from: str, phone: str, retry_count: int):
+def _handle_ocr_failure(wa_from: str, phone: str, retry_count: int) -> str:
     """Increment the retry counter and either ask for a new photo or
     give up after 3 failed attempts (per Section 2.1 edge cases)."""
     retry_count += 1
 
     if retry_count >= 3:
-        # Max retries reached — ask user to call back and restart
-        send_whatsapp(wa_from, MESSAGES["max_retries"])
         clear_session(phone)
+        return MESSAGES["max_retries"]
     else:
-        # Ask for a clearer photo
         update_session(phone, retry_count=retry_count)
-        send_whatsapp(
-            wa_from,
-            MESSAGES["retry_photo"].format(count=retry_count),
-        )
+        return MESSAGES["retry_photo"].format(count=retry_count)
 
 
 # ── Confirmation Handler ────────────────────────────────────────────
@@ -205,7 +204,7 @@ async def _handle_confirmation(
     phone: str,
     session: dict,
     body: str,
-):
+) -> str:
     """Handle the YES/NO reply to the OCR readback.
 
     YES → create artisan in the shared backend with a generated PIN, verify, send success.
@@ -234,27 +233,21 @@ async def _handle_confirmation(
             if artisan_id:
                 await backend_api.verify_artisan(artisan_id)
 
-            # ── Success! ──
-            send_whatsapp(wa_from, MESSAGES["success"].format(pin=pin))
+            clear_session(phone)
+            return MESSAGES["success"].format(pin=pin)
 
         except Exception as e:
             print(f"[ERROR] Backend call failed for {phone}: {e}")
-            send_whatsapp(
-                wa_from,
+            return (
                 "⚠️ कुछ गड़बड़ हुई। कृपया दोबारा YES भेजें।\n"
-                "Something went wrong. Please try sending YES again.",
+                "Something went wrong. Please try sending YES again."
             )
-            return  # don't clear session — let them retry
-
-        # Clean up
-        clear_session(phone)
 
     else:
         # Re-send the readback so the user knows what to confirm
         data = session.get("extracted_data", {})
-        readback = MESSAGES["readback"].format(
+        return MESSAGES["readback"].format(
             name=data.get("name", "—"),
             village=data.get("village", "—"),
             craft=data.get("craft", "—"),
         )
-        send_whatsapp(wa_from, readback)

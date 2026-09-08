@@ -27,12 +27,17 @@ def _get_client() -> Client:
     return _client
 
 
-def send_whatsapp(to: str, body: str) -> str:
-    """Send a WhatsApp message via the Twilio Sandbox.
+def send_whatsapp(to: str, body: str, content_sid: str = None) -> str:
+    """Send a WhatsApp message via Twilio.
+
+    If the account is in trial mode and Twilio rejects free-form body with
+    error 21654 (ContentSid Required), automatically falls back to sending
+    via pre-approved ContentSid.
 
     Args:
-        to:   Recipient phone in E.164 (+919...) or whatsapp:+919... format.
-        body: Message text.
+        to:          Recipient phone in E.164 (+919...) or whatsapp:+919... format.
+        body:        Message text.
+        content_sid: Optional pre-approved template ContentSid (starts with HX).
 
     Returns:
         The Twilio Message SID.
@@ -46,12 +51,25 @@ def send_whatsapp(to: str, body: str) -> str:
     if not from_number.startswith("whatsapp:"):
         from_number = f"whatsapp:{from_number}"
 
-    message = client.messages.create(
-        body=body,
-        from_=from_number,
-        to=to,
-    )
-    return message.sid
+    template_sid = content_sid or os.environ.get("TWILIO_CONTENT_SID", "HXfe5ab5f00277942d4d4200328b4d403c")
+
+    try:
+        message = client.messages.create(
+            body=body,
+            from_=from_number,
+            to=to,
+        )
+        return message.sid
+    except Exception as e:
+        if "ContentSid" in str(e) and template_sid:
+            print(f"[INFO] Free-form WhatsApp rejected ({e}); falling back to ContentSid: {template_sid}")
+            message = client.messages.create(
+                content_sid=template_sid,
+                from_=from_number,
+                to=to,
+            )
+            return message.sid
+        raise e
 
 
 async def download_media(media_url: str) -> bytes:
