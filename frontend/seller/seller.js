@@ -510,6 +510,9 @@ async function handleVoiceAnswer(spokenText) {
 
       formData.category = classData.category;
       formData.subcategory = classData.subcategory;
+      if (classData.productName) {
+        formData.productName = classData.productName;
+      }
       formData.confidence = classData.confidence;
       formData.pricing = classData.pricing;
       formData.pricing.suggestedPrice = classData.pricing.average;
@@ -520,7 +523,7 @@ async function handleVoiceAnswer(spokenText) {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          productName: formData.productAnswer,
+          productName: formData.productName || formData.productAnswer,
           category: formData.category,
           subcategory: formData.subcategory,
           quantity: formData.quantity,
@@ -655,7 +658,7 @@ continueBtn.addEventListener('click', async () => {
         artisan: session.artisan,
         language: session.language,
         product: {
-          name: formData.productAnswer,
+          name: formData.productName || formData.productAnswer,
           category: formData.category,
           subcategory: formData.subcategory,
           quantity: formData.quantity
@@ -746,21 +749,33 @@ function showPreview() {
     if (enhancementUnavailableBox) enhancementUnavailableBox.style.display = 'block';
   }
 
-  const prodName = currentListing?.product?.name || currentListing?.title || formData.productAnswer || '';
-  const prodCat = currentListing?.product?.category || currentListing?.category || formData.category || '';
+  const prodName = currentListing?.product?.name || currentListing?.title || formData.productName || formData.productAnswer || '';
+  const prodCat = currentListing?.product?.category || currentListing?.category || formData.category || 'Handicraft';
   const prodSubcat = currentListing?.product?.subcategory || formData.subcategory || '';
   const prodQty = currentListing?.product?.quantity || currentListing?.quantity || formData.quantity || 1;
   const prodDesc = currentListing?.description?.generatedLocal || currentListing?.description?.generatedEnglish || currentListing?.description?.original || currentListing?.description_local || currentListing?.description || formData.generatedLocalDescription || formData.descriptionAnswer || '';
-  const sugPrice = currentListing?.pricing?.suggestedPrice || formData.pricing.suggestedPrice || currentListing?.price || 0;
-  const finPrice = currentListing?.pricing?.finalPrice || formData.pricing.finalPrice || currentListing?.price || 0;
+  const sugPrice = currentListing?.pricing?.suggestedPrice || formData.pricing?.suggestedPrice || currentListing?.price || 0;
+  const finPrice = currentListing?.pricing?.finalPrice || formData.pricing?.finalPrice || currentListing?.price || 0;
 
-  if (previewProductName) previewProductName.innerText = prodName;
-  if (previewCategory) previewCategory.innerText = prodCat;
-  if (previewSubcategory) previewSubcategory.innerText = prodSubcat;
-  if (previewQuantity) previewQuantity.innerText = prodQty;
-  if (previewDescription) previewDescription.innerText = prodDesc;
+  if (previewProductName) previewProductName.value = prodName;
+  if (previewCategory) {
+    let matched = false;
+    for (let opt of previewCategory.options) {
+      if (opt.value.toLowerCase() === prodCat.toLowerCase()) {
+        opt.selected = true;
+        matched = true;
+        break;
+      }
+    }
+    if (!matched && prodCat) {
+      previewCategory.add(new Option(prodCat, prodCat, true, true));
+    }
+  }
+  if (previewSubcategory) previewSubcategory.value = prodSubcat;
+  if (previewQuantity) previewQuantity.value = prodQty;
+  if (previewDescription) previewDescription.value = prodDesc;
   if (previewSuggestedPrice) previewSuggestedPrice.innerText = `₹${sugPrice}`;
-  if (previewPrice) previewPrice.innerText = `₹${finPrice}`;
+  if (previewPrice) previewPrice.value = finPrice;
 
   const artName = currentListing?.artisan?.name || currentListing?.artisan_name || session?.artisan?.name || 'Artisan';
   const artCraft = currentListing?.artisan?.craft || currentListing?.artisan_craft || session?.artisan?.craft_type || session?.artisan?.craft || 'Handicraft';
@@ -776,21 +791,85 @@ function showPreview() {
   }
 }
 
+// Real-time market benchmark update when category changes
+async function updateSuggestedBenchmark() {
+  const cat = previewCategory ? previewCategory.value : 'Handicraft';
+  const subcat = previewSubcategory ? previewSubcategory.value.trim() : '';
+  try {
+    const res = await fetch('/api/price', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ category: cat, subcategory: subcat })
+    });
+    if (res.ok) {
+      const data = await res.json();
+      if (previewSuggestedPrice) {
+        previewSuggestedPrice.innerText = `₹${data.average}`;
+      }
+    }
+  } catch (e) {
+    console.warn('Could not update benchmark price:', e);
+  }
+}
+
+if (previewCategory) previewCategory.addEventListener('change', updateSuggestedBenchmark);
+if (previewSubcategory) previewSubcategory.addEventListener('change', updateSuggestedBenchmark);
+
+// AI Polish Description Handler
+const aiPolishDescBtn = document.getElementById('aiPolishDescBtn');
+if (aiPolishDescBtn) {
+  aiPolishDescBtn.addEventListener('click', async () => {
+    const origText = aiPolishDescBtn.innerHTML;
+    aiPolishDescBtn.disabled = true;
+    aiPolishDescBtn.innerHTML = '⏳ Polishing...';
+    try {
+      const res = await fetch('/api/generate-description', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          productName: (previewProductName ? previewProductName.value.trim() : '') || formData.productName || formData.productAnswer || 'Handicraft',
+          category: (previewCategory ? previewCategory.value : '') || formData.category || 'Handicraft',
+          subcategory: (previewSubcategory ? previewSubcategory.value.trim() : '') || formData.subcategory || '',
+          quantity: previewQuantity ? previewQuantity.value : 1,
+          originalDescription: (previewDescription ? previewDescription.value.trim() : '') || formData.descriptionAnswer || '',
+          craft: session?.artisan?.craft || session?.artisan?.craft_type || '',
+          location: session?.artisan?.location || session?.artisan?.village || '',
+          language: session?.language || 'hi'
+        })
+      });
+      if (res.ok) {
+        const data = await res.json();
+        const polished = data.generatedLocal || data.generatedEnglish;
+        if (polished && previewDescription) {
+          previewDescription.value = polished;
+        }
+      }
+    } catch (e) {
+      console.warn('AI Polish error:', e);
+    } finally {
+      aiPolishDescBtn.disabled = false;
+      aiPolishDescBtn.innerHTML = origText;
+    }
+  });
+}
+
 // Edit & Publish Handlers
-editListingBtn.addEventListener('click', async () => {
-  previewSection.style.display = 'none';
-  editSection.style.display = 'block';
+if (editListingBtn) {
+  editListingBtn.addEventListener('click', () => {
+    previewSection.style.display = 'none';
+    editSection.style.display = 'block';
 
-  editProductName.value = currentListing?.product?.name || currentListing?.title || formData.productAnswer || '';
-  editQuantity.value = currentListing?.product?.quantity || currentListing?.quantity || formData.quantity || 1;
-  editDescription.value = currentListing?.description?.generatedLocal || currentListing?.description?.generatedEnglish || currentListing?.description?.original || currentListing?.description || formData.generatedLocalDescription || '';
-  editFinalPrice.value = currentListing?.pricing?.finalPrice || formData.pricing.finalPrice || currentListing?.price || 0;
+    editProductName.value = previewProductName ? previewProductName.value : '';
+    editQuantity.value = previewQuantity ? previewQuantity.value : 1;
+    editDescription.value = previewDescription ? previewDescription.value : '';
+    editFinalPrice.value = previewPrice ? previewPrice.value : 0;
 
-  const catVal = currentListing?.product?.category || currentListing?.category || formData.category || 'Handicraft';
-  const subcatVal = currentListing?.product?.subcategory || formData.subcategory || '';
-  editCategory.innerHTML = `<option value="${catVal}">${catVal}</option>`;
-  editSubcategory.innerHTML = `<option value="${subcatVal}">${subcatVal}</option>`;
-});
+    const catVal = previewCategory ? previewCategory.value : 'Handicraft';
+    const subcatVal = previewSubcategory ? previewSubcategory.value : '';
+    editCategory.innerHTML = `<option value="${catVal}">${catVal}</option>`;
+    editSubcategory.innerHTML = `<option value="${subcatVal}">${subcatVal}</option>`;
+  });
+}
 
 cancelEditBtn.addEventListener('click', () => {
   editSection.style.display = 'none';
@@ -802,17 +881,16 @@ editForm.addEventListener('submit', async (e) => {
   const updatedPayload = {
     product: {
       name: editProductName.value,
-      category: editCategory.value || currentListing.product.category,
-      subcategory: editSubcategory.value || currentListing.product.subcategory,
-      quantity: parseInt(editQuantity.value, 10)
+      category: editCategory.value || (currentListing.product ? currentListing.product.category : 'Handicraft'),
+      subcategory: editSubcategory.value || (currentListing.product ? currentListing.product.subcategory : ''),
+      quantity: parseInt(editQuantity.value, 10) || 1
     },
     description: {
-      ...currentListing.description,
-      generatedLocal: editDescription.value
+      generatedLocal: editDescription.value,
+      generatedEnglish: editDescription.value
     },
     pricing: {
-      ...currentListing.pricing,
-      finalPrice: parseFloat(editFinalPrice.value)
+      finalPrice: parseFloat(editFinalPrice.value) || 0
     }
   };
 
@@ -834,20 +912,45 @@ editForm.addEventListener('submit', async (e) => {
 });
 
 publishListingBtn.addEventListener('click', async () => {
+  publishListingBtn.disabled = true;
+  const originalText = publishListingBtn.innerText;
+  publishListingBtn.innerText = 'Publishing...';
+
+  const updatedPayload = {
+    product: {
+      name: previewProductName ? previewProductName.value.trim() : (currentListing?.product?.name || 'Untitled'),
+      category: previewCategory ? previewCategory.value : (currentListing?.product?.category || 'Handicraft'),
+      subcategory: previewSubcategory ? previewSubcategory.value.trim() : (currentListing?.product?.subcategory || ''),
+      quantity: previewQuantity ? (parseInt(previewQuantity.value, 10) || 1) : 1
+    },
+    description: {
+      generatedLocal: previewDescription ? previewDescription.value.trim() : '',
+      generatedEnglish: previewDescription ? previewDescription.value.trim() : ''
+    },
+    pricing: {
+      finalPrice: previewPrice ? (parseFloat(previewPrice.value) || 0) : 0
+    },
+    status: 'published'
+  };
+
   try {
     const res = await fetch(`/api/listing/${currentListing.id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status: 'published' })
+      body: JSON.stringify(updatedPayload)
     });
     const data = await res.json();
     if (!res.ok) throw new Error(data.error || 'Publish failed');
 
     previewSection.style.display = 'none';
     successSection.style.display = 'block';
-    viewListingLink.href = `/marketplace.html`;
+    if (viewListingLink) {
+      viewListingLink.href = `/buyer/marketplace.html`;
+    }
   } catch (err) {
     alert('Publish failed: ' + err.message);
+    publishListingBtn.disabled = false;
+    publishListingBtn.innerText = originalText;
   }
 });
 

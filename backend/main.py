@@ -413,14 +413,37 @@ def update_listing_endpoint(listing_id: str, body: Dict[str, Any]):
         raise HTTPException(404, "Listing not found")
     
     updates = {}
-    if "product" in body:
-        updates["title"] = body["product"].get("name", existing.get("title"))
-        updates["category"] = body["product"].get("category", existing.get("category"))
-        updates["quantity"] = body["product"].get("quantity", existing.get("quantity"))
+    if "product" in body and isinstance(body["product"], dict):
+        if "name" in body["product"]:
+            updates["title"] = body["product"]["name"]
+        if "category" in body["product"]:
+            updates["category"] = body["product"]["category"]
+        if "quantity" in body["product"]:
+            updates["quantity"] = int(body["product"]["quantity"])
+    if "title" in body:
+        updates["title"] = body["title"]
+    if "category" in body:
+        updates["category"] = body["category"]
+    if "quantity" in body:
+        updates["quantity"] = int(body["quantity"])
+
     if "description" in body:
-        updates["description_local"] = body["description"].get("generatedLocal", existing.get("description_local"))
-    if "pricing" in body:
-        updates["price"] = body["pricing"].get("finalPrice", existing.get("price"))
+        if isinstance(body["description"], dict):
+            desc_val = body["description"].get("generatedLocal") or body["description"].get("generatedEnglish") or ""
+            updates["description_local"] = body["description"].get("generatedLocal", desc_val)
+            updates["description"] = body["description"].get("generatedEnglish", desc_val)
+        else:
+            updates["description"] = str(body["description"])
+            updates["description_local"] = str(body["description"])
+    if "description_local" in body:
+        updates["description_local"] = str(body["description_local"])
+
+    if "pricing" in body and isinstance(body["pricing"], dict):
+        if "finalPrice" in body["pricing"]:
+            updates["price"] = float(body["pricing"]["finalPrice"])
+    if "price" in body:
+        updates["price"] = float(body["price"])
+
     if "status" in body:
         updates["status"] = body["status"]
     

@@ -394,6 +394,112 @@ body {
   margin-bottom: 6px;
 }
 
+.field-label-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.field-hint {
+  font-size: 0.8rem;
+  color: var(--orange-accent);
+  font-weight: 600;
+  background-color: rgba(217, 107, 39, 0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.field-input, .rect-input {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  font-family: inherit;
+  border-radius: 4px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.field-input:focus, .rect-input:focus {
+  outline: none;
+  border-color: var(--orange-accent);
+  box-shadow: 0 0 0 2px rgba(217, 107, 39, 0.2);
+  background-color: #FFFFFF;
+}
+
+.rect-textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+.display-field-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.btn-ai-polish {
+  background: linear-gradient(135deg, #FFF7ED 0%, #FFEDD5 100%);
+  color: #C2410C;
+  border: 1px solid #FDBA74;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-ai-polish:hover {
+  background: #FFEDD5;
+  border-color: #EA580C;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(234, 88, 12, 0.15);
+}
+
+.suggested-price-display {
+  background-color: #F3F4F6;
+  border: 1px dashed #9CA3AF;
+  color: #4B5563;
+  padding: 10px 14px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: 4px;
+  min-height: 42px;
+  display: flex;
+  align-items: center;
+}
+
+.price-input-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.price-currency-sign {
+  position: absolute;
+  left: 12px;
+  font-weight: 700;
+  font-size: 1.15rem;
+  color: var(--orange-accent);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.price-input {
+  padding-left: 28px !important;
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--orange-accent) !important;
+}
+
 .field-value {
   background-color: var(--input-bg);
   border: 1px solid var(--input-border);

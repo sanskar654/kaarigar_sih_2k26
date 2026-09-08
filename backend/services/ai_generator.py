@@ -58,7 +58,7 @@ async def classify_product(user_text: str) -> Dict[str, Any]:
                 messages=[
                     {
                         "role": "system",
-                        "content": "You are an expert Indian handicraft product classifier. Map the artisan input to ONE category and ONE subcategory. Return valid JSON strictly matching: { \"category\": \"Category Name\", \"subcategory\": \"Subcategory Name\", \"confidence\": \"high\" | \"low\", \"clarificationQuestion\": \"If confidence is low, ask a respectful clarification question, else empty string.\" }"
+                        "content": "You are an expert Indian handicraft product classifier. Map the artisan input to ONE category and ONE subcategory, and extract a clean, concise, elegant product name (e.g. 'Handmade Terracotta Diyas' or 'हस्तनिर्मित मिट्टी के दीये', stripping out conversational fillers like 'I am selling', 'उत्पाद बेच रहा हूं', 'फिर मैं'). Return valid JSON strictly matching: { \"category\": \"Category Name\", \"subcategory\": \"Subcategory Name\", \"productName\": \"Clean Product Name\", \"confidence\": \"high\" | \"low\", \"clarificationQuestion\": \"If confidence is low, ask a respectful clarification question, else empty string.\" }"
                     },
                     {
                         "role": "user",
@@ -73,6 +73,7 @@ async def classify_product(user_text: str) -> Dict[str, Any]:
                 return {
                     "category": parsed["category"],
                     "subcategory": parsed["subcategory"],
+                    "productName": parsed.get("productName", "").strip(),
                     "confidence": parsed.get("confidence", "high"),
                     "clarificationQuestion": parsed.get("clarificationQuestion", ""),
                     "provider": "openai"
@@ -86,6 +87,7 @@ async def classify_product(user_text: str) -> Dict[str, Any]:
             return {
                 "category": item["category"],
                 "subcategory": item["subcategory"],
+                "productName": f"Handcrafted {item['subcategory']}",
                 "confidence": "high",
                 "clarificationQuestion": "",
                 "provider": "fallback"
@@ -95,6 +97,7 @@ async def classify_product(user_text: str) -> Dict[str, Any]:
     return {
         "category": "Pottery & Ceramics",
         "subcategory": "Diyas",
+        "productName": "Handcrafted Diyas",
         "confidence": "high",
         "clarificationQuestion": "",
         "provider": "fallback"

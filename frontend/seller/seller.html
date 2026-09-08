@@ -138,38 +138,80 @@
         </div>
 
         <div class="display-field">
-          <div class="field-label">Product Name</div>
-          <div class="field-value" id="previewProductName">-</div>
+          <div class="field-label-row">
+            <label class="field-label" for="previewProductName">Product Name</label>
+            <span class="field-hint">✏️ Personalize</span>
+          </div>
+          <input type="text" class="field-input rect-input" id="previewProductName" placeholder="Enter product name">
+        </div>
+
+        <div class="display-field-grid">
+          <div class="display-field">
+            <div class="field-label-row">
+              <label class="field-label" for="previewCategory">Category</label>
+              <span class="field-hint">✏️ Select</span>
+            </div>
+            <select class="field-input rect-input" id="previewCategory">
+              <option value="Pottery & Ceramics">Pottery & Ceramics</option>
+              <option value="Textiles & Weaving">Textiles & Weaving</option>
+              <option value="Wood Craft">Wood Craft</option>
+              <option value="Bamboo & Cane">Bamboo & Cane</option>
+              <option value="Metal Craft">Metal Craft</option>
+              <option value="Jewellery">Jewellery</option>
+              <option value="Leather Craft">Leather Craft</option>
+              <option value="Paintings & Art">Paintings & Art</option>
+              <option value="Toys & Dolls">Toys & Dolls</option>
+              <option value="Home & Decorative Crafts">Home & Decorative Crafts</option>
+              <option value="Handicraft">Handicraft</option>
+            </select>
+          </div>
+
+          <div class="display-field">
+            <div class="field-label-row">
+              <label class="field-label" for="previewSubcategory">Subcategory</label>
+              <span class="field-hint">✏️ Personalize</span>
+            </div>
+            <input type="text" class="field-input rect-input" id="previewSubcategory" placeholder="Subcategory (e.g. Diyas, Pots)">
+          </div>
         </div>
 
         <div class="display-field">
-          <div class="field-label">Category</div>
-          <div class="field-value" id="previewCategory">-</div>
+          <div class="field-label-row">
+            <label class="field-label" for="previewQuantity">Quantity</label>
+            <span class="field-hint">✏️ Personalize</span>
+          </div>
+          <input type="number" min="1" class="field-input rect-input" id="previewQuantity" style="max-width: 160px;">
         </div>
 
         <div class="display-field">
-          <div class="field-label">Subcategory</div>
-          <div class="field-value" id="previewSubcategory">-</div>
+          <div class="field-label-row" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+            <div>
+              <label class="field-label" for="previewDescription" style="margin-bottom: 0;">Description & Story</label>
+              <span class="field-hint" style="margin-left: 8px;">✏️ Personalize</span>
+            </div>
+            <button type="button" class="btn-ai-polish" id="aiPolishDescBtn" title="Polish description with AI">
+              ✨ AI Polish Story
+            </button>
+          </div>
+          <textarea class="field-input rect-input rect-textarea" id="previewDescription" rows="4" placeholder="Personalize your product story, dimensions, and craft technique..."></textarea>
         </div>
 
-        <div class="display-field">
-          <div class="field-label">Quantity</div>
-          <div class="field-value" id="previewQuantity">-</div>
-        </div>
+        <div class="display-field-grid" style="align-items: end;">
+          <div class="display-field">
+            <div class="field-label">Suggested Price (Benchmark)</div>
+            <div class="suggested-price-display" id="previewSuggestedPrice">₹500</div>
+          </div>
 
-        <div class="display-field">
-          <div class="field-label">Description</div>
-          <div class="field-value" id="previewDescription">-</div>
-        </div>
-
-        <div class="display-field">
-          <div class="field-label">Suggested Price</div>
-          <div class="field-value" id="previewSuggestedPrice">-</div>
-        </div>
-
-        <div class="display-field">
-          <div class="field-label">Final Price</div>
-          <div class="field-value price-value" id="previewPrice">-</div>
+          <div class="display-field">
+            <div class="field-label-row">
+              <label class="field-label" for="previewPrice">Final Selling Price (₹)</label>
+              <span class="field-hint">✏️ Personalize</span>
+            </div>
+            <div class="price-input-container">
+              <span class="price-currency-sign">₹</span>
+              <input type="number" min="1" step="1" class="field-input rect-input price-input" id="previewPrice">
+            </div>
+          </div>
         </div>
       </div>
 
