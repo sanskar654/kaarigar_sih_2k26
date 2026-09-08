@@ -38,7 +38,7 @@ def send_whatsapp(to: str, body: str) -> str:
         The Twilio Message SID.
     """
     client = _get_client()
-    from_number = os.environ["TWILIO_WHATSAPP_FROM"]
+    from_number = os.environ.get("TWILIO_WHATSAPP_FROM", os.environ.get("TWILIO_PHONE_NUMBER", ""))
 
     # Ensure whatsapp: prefix on both sides
     if not to.startswith("whatsapp:"):
