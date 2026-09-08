@@ -1,6 +1,19 @@
 node_modules/
 .env
+*.db
+backend/kaarigar.db
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Uploads
 backend/uploads/original/*
 backend/uploads/enhanced/*
 !backend/uploads/original/.gitkeep
 !backend/uploads/enhanced/.gitkeep
+
