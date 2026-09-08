@@ -11,6 +11,7 @@ Timeout Strategy:
     the call plays "Hum aapka jawab nahi sun paye..." and hangs up.
     Implemented via a ?retry= query parameter on the redirect URL.
 """
+import os
 from fastapi import APIRouter, Form, Query
 from fastapi.responses import Response
 from twilio.twiml.voice_response import VoiceResponse
@@ -19,6 +20,8 @@ from onboarding.services.session import normalize_phone, set_session
 from onboarding.services.twilio_client import send_whatsapp
 
 router = APIRouter(prefix="/voice", tags=["Voice IVR"])
+
+BASE_URL = os.getenv("BACKEND_URL", "https://kaarigar-sih-2k26.onrender.com").rstrip("/")
 
 
 # ── Voice Prompts (Hindi — Devanagari for Twilio's hi-IN TTS) ────────
@@ -117,7 +120,7 @@ async def incoming_call(
 
     gather = response.gather(
         num_digits=1,
-        action="/voice/language-selected",
+        action=f"{BASE_URL}/voice/language-selected",
         timeout=8,
         method="POST",
     )
@@ -135,7 +138,7 @@ async def incoming_call(
         response.hangup()
     else:
         # First timeout → repeat the prompt once
-        response.redirect("/voice/incoming?retry=1", method="POST")
+        response.redirect(f"{BASE_URL}/voice/incoming?retry=1", method="POST")
 
     return _twiml(response)
 
@@ -166,7 +169,7 @@ async def language_selected(
 
     gather = response.gather(
         num_digits=1,
-        action=f"/voice/main-menu?lang={lang}",
+        action=f"{BASE_URL}/voice/main-menu?lang={lang}",
         timeout=8,
         method="POST",
     )
@@ -182,7 +185,7 @@ async def language_selected(
         response.hangup()
     else:
         response.redirect(
-            f"/voice/language-selected?retry=1&lang={lang}",
+            f"{BASE_URL}/voice/language-selected?retry=1&lang={lang}",
             method="POST",
         )
 
@@ -208,7 +211,7 @@ async def main_menu(
 
     if Digits == "1":
         # Registration branch
-        response.redirect(f"/voice/registration?lang={lang}", method="POST")
+        response.redirect(f"{BASE_URL}/voice/registration?lang={lang}", method="POST")
 
     elif Digits == "2":
         # Selling — Track B will implement this
@@ -256,7 +259,7 @@ async def registration(
     # ── New user — ask about Pahchan ID ──
     gather = response.gather(
         num_digits=1,
-        action=f"/voice/pahchan-check?lang={lang}",
+        action=f"{BASE_URL}/voice/pahchan-check?lang={lang}",
         timeout=8,
         method="POST",
     )
@@ -272,7 +275,7 @@ async def registration(
         response.hangup()
     else:
         response.redirect(
-            f"/voice/registration?lang={lang}&retry=1",
+            f"{BASE_URL}/voice/registration?lang={lang}&retry=1",
             method="POST",
         )
 
